@@ -1,7 +1,12 @@
 package com.example.openevents.API;
 
 import com.example.openevents.Request.LoginRequest;
+import com.example.openevents.Request.RegisterRequest;
 import com.example.openevents.Response.LoginResponse;
+import com.example.openevents.Response.RegisterResponse;
+import com.example.openevents.Response.UserResponse;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,7 +33,7 @@ public class APIClient {
 
     private APIClient(){
         this.retrofit = new Retrofit.Builder()
-                .baseUrl("")
+                .baseUrl("http://puigmal.salle.url.edu/api/v2/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
@@ -39,6 +44,24 @@ public class APIClient {
      * Authentication
      *
      */
+    //TODO: Put in register activity
+    public void register(RegisterRequest registerRequest, OpenEventsCallback<RegisterResponse> callback){
+        this.service.register(registerRequest).enqueue(new Callback<RegisterResponse>() {
+            @Override
+            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                callback.onResponseOpenEvents(call,response);
+            }
+
+            @Override
+            public void onFailure(Call<RegisterResponse> call, Throwable t) {
+                callback.onFailureOpenEvents();
+            }
+        });
+
+
+    }
+
+
     public void login(LoginRequest loginRequest, OpenEventsCallback<LoginResponse> callback){
         this.service.login(loginRequest).enqueue(new Callback<LoginResponse>() {
             @Override
@@ -54,6 +77,29 @@ public class APIClient {
 
             }
         });
+    }
+
+    /**
+     *
+     * Users
+     *
+     */
+
+    public void getUsers(OpenEventsCallback<List<UserResponse>> callback){
+
+        this.service.getUsers().enqueue(new Callback<List<UserResponse>>() {
+            @Override
+            public void onResponse(Call<List<UserResponse>> call, Response<List<UserResponse>> response) {
+                //TODO: the users are in the response.body() and in there a list could be created
+                callback.onResponseOpenEvents(call,response);
+            }
+
+            @Override
+            public void onFailure(Call<List<UserResponse>> call, Throwable t) {
+
+            }
+        });
+
     }
 
 
