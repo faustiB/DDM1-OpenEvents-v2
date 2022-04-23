@@ -1,8 +1,12 @@
 package com.example.openevents;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.openevents.API.APIClient;
 import com.example.openevents.API.OpenEventsCallback;
@@ -21,20 +25,33 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //TODO: Put the values of the ui.
-        LoginRequest loginRequest = new LoginRequest("","");
+        //Sign up
+        TextView tvSignUp = findViewById(R.id.tv_login_sign_up);
+        tvSignUp.setOnClickListener(view -> {
+            Toast.makeText(getApplicationContext(), "TEST CLICK SIGNUP", Toast.LENGTH_SHORT).show();
+        });
 
-        apiClient.login(loginRequest, new OpenEventsCallback<LoginResponse>() {
-            @Override
-            public void onResponseOpenEvents(Call<LoginResponse> call, Response<LoginResponse> response) {
-                //TODO: Intent to the next screen. --> startActivity
-            }
+        //Sign in
+        Button btSignIn = findViewById(R.id.bt_login_sign_in);
+        btSignIn.setOnClickListener(view -> {
 
-            @Override
-            public void onFailureOpenEvents() {
+            EditText etEmail = findViewById(R.id.et_login_email);
+            EditText etPassword = findViewById(R.id.et_login_password);
 
-            }
+            LoginRequest loginRequest = new LoginRequest(etEmail.getText().toString(), etPassword.getText().toString());
+            //TODO: Not working, search how to put parameters in call body
+            /*apiClient.login(loginRequest, new OpenEventsCallback<LoginResponse>() {
+                @Override
+                public void onResponseOpenEvents(Call<LoginResponse> call, Response<LoginResponse> response) {
+                    Toast.makeText(getApplicationContext(), "TEST CALL REPSONSE OK", Toast.LENGTH_SHORT).show();
+                }
 
+                @Override
+                public void onFailureOpenEvents() {
+
+                }
+
+            });*/
         });
 
 
