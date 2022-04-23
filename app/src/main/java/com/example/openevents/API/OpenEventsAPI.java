@@ -5,6 +5,8 @@ import com.example.openevents.Request.RegisterRequest;
 import com.example.openevents.Response.LoginResponse;
 import com.example.openevents.Response.RegisterResponse;
 import com.example.openevents.Response.UserResponse;
+import com.example.openevents.Response.UserStatisticsResponse;
+import com.example.openevents.Response.UsersResponse;
 
 import java.util.List;
 
@@ -31,6 +33,14 @@ public interface OpenEventsAPI {
      * Users
      */
     @GET("users")
-    Call<List<UserResponse>> getUsers();
+    Call<List<UsersResponse>> getUsers();
 
+    @GET("users/{id}")
+    Call<UserResponse> getUserById(int id);
+
+    @GET("users/search/s={name}")
+    Call<List<UserResponse>> searchUsersByName(String name);
+
+    @GET("users/{id}/statistics")
+    Call<UserStatisticsResponse> getUserStatistics(int id);
 }
