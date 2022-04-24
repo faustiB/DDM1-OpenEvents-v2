@@ -12,6 +12,7 @@ import com.example.openevents.Response.UsersResponse;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -23,12 +24,12 @@ public interface OpenEventsAPI {
      */
 
     //register
-    @POST("/users")
+    @POST("users")
     Call<RegisterResponse> register(RegisterRequest registerRequest);
 
     //login
-    @POST("/users/login")
-    Call<LoginResponse> login(LoginRequest loginRequest);
+    @POST("users/login")
+    Call<LoginResponse> login(@Body LoginRequest loginRequest);
 
 
     /**

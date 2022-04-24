@@ -38,20 +38,23 @@ public class LoginActivity extends AppCompatActivity {
             EditText etEmail = findViewById(R.id.et_login_email);
             EditText etPassword = findViewById(R.id.et_login_password);
 
+            System.out.println("Test User name: " + etEmail.getText().toString());
+            System.out.println("Test User password: " + etPassword.getText().toString());
+
             LoginRequest loginRequest = new LoginRequest(etEmail.getText().toString(), etPassword.getText().toString());
-            //TODO: Not working, search how to put parameters in call body
-            /*apiClient.login(loginRequest, new OpenEventsCallback<LoginResponse>() {
+            apiClient.login(loginRequest, new OpenEventsCallback<LoginResponse>() {
                 @Override
                 public void onResponseOpenEvents(Call<LoginResponse> call, Response<LoginResponse> response) {
                     Toast.makeText(getApplicationContext(), "TEST CALL REPSONSE OK", Toast.LENGTH_SHORT).show();
+                    System.out.println("TEST CALL REPSONSE Success: " + response.body());
                 }
 
                 @Override
                 public void onFailureOpenEvents() {
-
+                    System.out.println("TEST CALL REPSONSE FAIL");
                 }
 
-            });*/
+            });
         });
 
 

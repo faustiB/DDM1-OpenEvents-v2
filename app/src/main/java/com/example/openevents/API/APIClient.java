@@ -45,7 +45,7 @@ public class APIClient {
                 .baseUrl("http://puigmal.salle.url.edu/api/v2/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
+        this.service = retrofit.create(OpenEventsAPI.class);
     }
 
     private void addTokenToRequest(String accessToken) {
@@ -65,6 +65,7 @@ public class APIClient {
                 .baseUrl("http://puigmal.salle.url.edu/api/v2/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        this.service = retrofit.create(OpenEventsAPI.class);
     }
 
 
