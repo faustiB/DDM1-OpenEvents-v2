@@ -2,6 +2,7 @@ package com.example.openevents.API;
 
 import androidx.annotation.NonNull;
 
+import com.example.openevents.Request.EditUserRequest;
 import com.example.openevents.Request.LoginRequest;
 import com.example.openevents.Request.RegisterRequest;
 import com.example.openevents.Response.LoginResponse;
@@ -166,6 +167,20 @@ public class APIClient {
 
             @Override
             public void onFailure(Call<UserStatisticsResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void updateUser (EditUserRequest editUserRequest, OpenEventsCallback<UserResponse> callback) {
+        this.service.updateUser(editUserRequest).enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                callback.onResponseOpenEvents(call,response);
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
 
             }
         });
