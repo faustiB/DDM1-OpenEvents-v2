@@ -74,7 +74,6 @@ public class APIClient {
      * Authentication
      *
      */
-    //TODO: Put in register activity
     public void register(RegisterRequest registerRequest, OpenEventsCallback<RegisterResponse> callback){
         this.service.register(registerRequest).enqueue(new Callback<RegisterResponse>() {
             @Override
@@ -104,7 +103,7 @@ public class APIClient {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-
+                callback.onFailureOpenEvents();
             }
         });
     }

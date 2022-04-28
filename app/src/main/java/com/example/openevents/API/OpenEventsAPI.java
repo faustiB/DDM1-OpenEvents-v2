@@ -25,7 +25,7 @@ public interface OpenEventsAPI {
 
     //register
     @POST("users")
-    Call<RegisterResponse> register(RegisterRequest registerRequest);
+    Call<RegisterResponse> register(@Body RegisterRequest registerRequest);
 
     //login
     @POST("users/login")
