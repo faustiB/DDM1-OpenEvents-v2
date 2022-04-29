@@ -16,4 +16,7 @@
     <string name="profile_picture">Profile Picture</string>
     <string name="profile_picture_placeholder">img.jpg</string>
     <string name="create_account">Create account</string>
+    <string name="events">Events</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>
