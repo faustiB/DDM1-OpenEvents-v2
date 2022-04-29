@@ -44,7 +44,10 @@ public class LoginActivity extends AppCompatActivity {
             apiClient.login(loginRequest, new OpenEventsCallback<LoginResponse>() {
                 @Override
                 public void onResponseOpenEvents(Call<LoginResponse> call, Response<LoginResponse> response) {
-                    Toast.makeText(getApplicationContext(), "TEST CALL REPSONSE OK:", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), EventsActivity.class);
+                    intent.putExtra("email",etEmail.getText().toString());
+                    startActivity(intent);
+
                 }
 
                 @Override

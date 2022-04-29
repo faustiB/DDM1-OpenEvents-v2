@@ -1,7 +1,12 @@
 package com.example.openevents.Response;
 
-public class LoginResponse {
+import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
+public class LoginResponse implements Serializable {
+
+    @SerializedName("accessToken")
     private String accesToken;
 
     public String getAccesToken() {
