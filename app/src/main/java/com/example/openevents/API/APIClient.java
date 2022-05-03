@@ -1,7 +1,14 @@
 package com.example.openevents.API;
 
+import static android.content.Context.MODE_PRIVATE;
+import static android.provider.Settings.System.getString;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import androidx.annotation.NonNull;
 
+import com.example.openevents.R;
 import com.example.openevents.Request.EditUserRequest;
 import com.example.openevents.Request.LoginRequest;
 import com.example.openevents.Request.RegisterRequest;
@@ -33,30 +40,29 @@ public class APIClient {
 
     private String accessToken;
 
-    public static APIClient getInstance(){
-        if (shared == null){
-            shared = new APIClient();
+    public static APIClient getInstance(Context applicationContext) {
+        if (shared == null) {
+            shared = new APIClient(applicationContext);
         }
         return shared;
     }
 
-    private APIClient(){
-        this.retrofit = new Retrofit.Builder()
-                .baseUrl("http://puigmal.salle.url.edu/api/v2/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        this.service = retrofit.create(OpenEventsAPI.class);
-    }
-
-    private void addTokenToRequest(String accessToken) {
+    private APIClient(Context applicationContext) {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @NonNull
             @Override
             public okhttp3.Response intercept(@NonNull Chain chain) throws IOException {
-                Request newRequest  = chain.request().newBuilder()
-                        .addHeader("Authorization", "Bearer " + accessToken)
-                        .build();
-                return chain.proceed(newRequest);
+                SharedPreferences sharedPreferences = applicationContext.getSharedPreferences("token", MODE_PRIVATE);
+                accessToken = sharedPreferences.getString("token", null);
+
+                if(accessToken != null) {
+                    Request newRequest = chain.request().newBuilder()
+                            .addHeader("Authorization", "Bearer " + accessToken)
+                            .build();
+                    return chain.proceed(newRequest);
+                } else {
+                    return chain.proceed(chain.request());
+                }
             }
         }).build();
 
@@ -68,17 +74,14 @@ public class APIClient {
         this.service = retrofit.create(OpenEventsAPI.class);
     }
 
-
     /**
-     *
      * Authentication
-     *
      */
-    public void register(RegisterRequest registerRequest, OpenEventsCallback<RegisterResponse> callback){
+    public void register(RegisterRequest registerRequest, OpenEventsCallback<RegisterResponse> callback) {
         this.service.register(registerRequest).enqueue(new Callback<RegisterResponse>() {
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
-                callback.onResponseOpenEvents(call,response);
+                callback.onResponseOpenEvents(call, response);
             }
 
             @Override
@@ -90,15 +93,19 @@ public class APIClient {
 
     }
 
-
-    public void login(LoginRequest loginRequest, OpenEventsCallback<LoginResponse> callback){
+    public void login(Context context, LoginRequest loginRequest, OpenEventsCallback<LoginResponse> callback) {
         this.service.login(loginRequest).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 accessToken = response.body().getAccesToken();
-                addTokenToRequest(accessToken);
 
-                callback.onResponseOpenEvents(call,response);
+                //Save token to shared preferences
+                SharedPreferences sharedPref = context.getSharedPreferences("token", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("token", accessToken);
+                editor.apply();
+
+                callback.onResponseOpenEvents(call, response);
             }
 
             @Override
@@ -109,46 +116,44 @@ public class APIClient {
     }
 
     /**
-     *
      * Users
-     *
      */
 
-    public void getUsers(OpenEventsCallback<List<UsersResponse>> callback){
+    public void getUsers(OpenEventsCallback<List<UsersResponse>> callback) {
         this.service.getUsers().enqueue(new Callback<List<UsersResponse>>() {
             @Override
             public void onResponse(Call<List<UsersResponse>> call, Response<List<UsersResponse>> response) {
                 //TODO: the users are in the response.body() and in there a list could be created
-                callback.onResponseOpenEvents(call,response);
+                callback.onResponseOpenEvents(call, response);
             }
 
             @Override
             public void onFailure(Call<List<UsersResponse>> call, Throwable t) {
-
+                callback.onFailureOpenEvents();
             }
         });
 
     }
 
-    public void getUserById (int id, OpenEventsCallback<UserResponse> callback) {
+    public void getUserById(int id, OpenEventsCallback<UserResponse> callback) {
         this.service.getUserById(id).enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
-                callback.onResponseOpenEvents(call,response);
+                callback.onResponseOpenEvents(call, response);
             }
 
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
-
+                callback.onFailureOpenEvents();
             }
         });
     }
 
-    public void searchUsersByName (String name, OpenEventsCallback<List<UserResponse>> callback) {
+    public void searchUsersByName(String name, OpenEventsCallback<List<UserResponse>> callback) {
         this.service.searchUsersByName(name).enqueue(new Callback<List<UserResponse>>() {
             @Override
             public void onResponse(Call<List<UserResponse>> call, Response<List<UserResponse>> response) {
-                callback.onResponseOpenEvents(call,response);
+                callback.onResponseOpenEvents(call, response);
             }
 
             @Override
@@ -158,11 +163,11 @@ public class APIClient {
         });
     }
 
-    public void getUserStatistics (int id, OpenEventsCallback<UserStatisticsResponse> callback) {
+    public void getUserStatistics(int id, OpenEventsCallback<UserStatisticsResponse> callback) {
         this.service.getUserStatistics(id).enqueue(new Callback<UserStatisticsResponse>() {
             @Override
             public void onResponse(Call<UserStatisticsResponse> call, Response<UserStatisticsResponse> response) {
-                callback.onResponseOpenEvents(call,response);
+                callback.onResponseOpenEvents(call, response);
             }
 
             @Override
@@ -172,16 +177,16 @@ public class APIClient {
         });
     }
 
-    public void updateUser (EditUserRequest editUserRequest, OpenEventsCallback<UserResponse> callback) {
+    public void updateUser(EditUserRequest editUserRequest, OpenEventsCallback<UserResponse> callback) {
         this.service.updateUser(editUserRequest).enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
-                callback.onResponseOpenEvents(call,response);
+                callback.onResponseOpenEvents(call, response);
             }
 
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
-
+                callback.onFailureOpenEvents();
             }
         });
     }

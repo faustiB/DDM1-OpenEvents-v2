@@ -17,7 +17,7 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private APIClient apiClient = APIClient.getInstance();
+    private APIClient apiClient = APIClient.getInstance(getApplicationContext());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

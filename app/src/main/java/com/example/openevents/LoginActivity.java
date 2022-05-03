@@ -19,12 +19,14 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private APIClient apiClient = APIClient.getInstance();
+    private APIClient apiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        apiClient = APIClient.getInstance(getApplicationContext());
 
         //Sign up
         TextView tvSignUp = findViewById(R.id.tv_login_sign_up);
@@ -41,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
             EditText etPassword = findViewById(R.id.et_login_password);
 
             LoginRequest loginRequest = new LoginRequest(etEmail.getText().toString(), etPassword.getText().toString());
-            apiClient.login(loginRequest, new OpenEventsCallback<LoginResponse>() {
+            apiClient.login(getApplicationContext(), loginRequest, new OpenEventsCallback<LoginResponse>() {
                 @Override
                 public void onResponseOpenEvents(Call<LoginResponse> call, Response<LoginResponse> response) {
                     Intent intent = new Intent(getApplicationContext(), EventsActivity.class);
