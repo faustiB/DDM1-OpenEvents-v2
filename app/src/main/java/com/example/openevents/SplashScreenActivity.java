@@ -22,7 +22,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 Intent i;
 
                 if (accessToken != null) {
-                     i = new Intent(SplashScreenActivity.this, EventsActivity.class);
+                     i = new Intent(SplashScreenActivity.this, ExploreEventsActivity.class);
 
                 } else {
                     i = new Intent(SplashScreenActivity.this, LoginActivity.class);

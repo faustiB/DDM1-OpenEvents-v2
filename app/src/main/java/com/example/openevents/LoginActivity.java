@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onResponseOpenEvents(Call<LoginResponse> call, Response<LoginResponse> response) {
                     if (response.isSuccessful()) {
-                        Intent intent = new Intent(getApplicationContext(), EventsActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), ExploreEventsActivity.class);
                         startActivity(intent);
                     } else {
                         Toast.makeText(getApplicationContext(), "Wrong email or password", Toast.LENGTH_SHORT).show();

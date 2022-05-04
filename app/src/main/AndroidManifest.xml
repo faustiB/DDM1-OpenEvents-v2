@@ -13,21 +13,35 @@
         android:theme="@style/Theme.OpenEvents"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".SearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MessagesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TimelineActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EventsActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashScreenActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".EventsActivity"
+            android:name=".ExploreEventsActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="false"/>
+            android:exported="false" />
     </application>
+
 </manifest>
