@@ -21,4 +21,5 @@
     <string name="close">Close</string>
     <string name="preference_file_key">shared_preferences</string>
     <string name="access_token">access_token</string>
+    <string name="repeat_password">Repeat Password</string>
 </resources>

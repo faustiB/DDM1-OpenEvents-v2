@@ -15,25 +15,4 @@ public class RegisterRequest {
         this.password = password;
         this.image = image;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getLast_name() {
-        return last_name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
 }

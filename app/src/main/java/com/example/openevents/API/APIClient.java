@@ -97,13 +97,15 @@ public class APIClient {
         this.service.login(loginRequest).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                accessToken = response.body().getAccesToken();
+                if (response.isSuccessful()) {
+                    accessToken = response.body().getAccesToken();
 
-                //Save token to shared preferences
-                SharedPreferences sharedPref = context.getSharedPreferences("token", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putString("token", accessToken);
-                editor.apply();
+                    //Save token to shared preferences
+                    SharedPreferences sharedPref = context.getSharedPreferences("token", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString("token", accessToken);
+                    editor.apply();
+                }
 
                 callback.onResponseOpenEvents(call, response);
             }

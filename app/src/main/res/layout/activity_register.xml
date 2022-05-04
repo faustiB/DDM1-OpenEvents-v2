@@ -91,7 +91,7 @@
             android:id="@+id/tv_register_password_conf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/password"
+            android:text="@string/repeat_password"
             android:textColor="@color/black" />
 
         <EditText

@@ -46,15 +46,18 @@ public class LoginActivity extends AppCompatActivity {
             apiClient.login(getApplicationContext(), loginRequest, new OpenEventsCallback<LoginResponse>() {
                 @Override
                 public void onResponseOpenEvents(Call<LoginResponse> call, Response<LoginResponse> response) {
-                    Intent intent = new Intent(getApplicationContext(), EventsActivity.class);
-                    startActivity(intent);
+                    if (response.isSuccessful()) {
+                        Intent intent = new Intent(getApplicationContext(), EventsActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Wrong email or password", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
                 @Override
                 public void onFailureOpenEvents() {
                     System.out.println("TEST CALL REPSONSE FAIL");
                 }
-
             });
         });
 
