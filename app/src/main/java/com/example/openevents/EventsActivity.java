@@ -21,47 +21,10 @@ import java.util.Objects;
 
 public class EventsActivity extends AppCompatActivity {
 
-    ActionBarDrawerToggle toggle;
-    DrawerLayout drawerLayout;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
 
-        drawerLayout = findViewById(R.id.drawer_layout);
-
-        toggle = new ActionBarDrawerToggle(this,drawerLayout, R.string.open,R.string.close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar_events));
-
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-
-        NavigationView navView = findViewById(R.id.nav_view_event);
-        navView.setNavigationItemSelectedListener(item -> {
-            if (item.getItemId() == R.id.evt_item1){
-                Toast.makeText(getApplicationContext(),"ITEM 1",Toast.LENGTH_SHORT).show();
-            }
-            if (item.getItemId() == R.id.evt_item2){
-                Toast.makeText(getApplicationContext(),"ITEM 2",Toast.LENGTH_SHORT).show();
-            }
-            if (item.getItemId() == R.id.evt_item3){
-                Toast.makeText(getApplicationContext(),"ITEM 3",Toast.LENGTH_SHORT).show();
-            }
-
-        return true;
-        });
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        if(toggle.onOptionsItemSelected(item)){
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }
