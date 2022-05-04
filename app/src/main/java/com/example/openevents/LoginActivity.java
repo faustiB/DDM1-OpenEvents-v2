@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailureOpenEvents() {
-                    System.out.println("TEST CALL REPSONSE FAIL");
+                    System.out.println("TEST CALL RESPONSE FAIL");
                 }
             });
         });

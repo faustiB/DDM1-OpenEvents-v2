@@ -87,6 +87,7 @@ public class APIClient {
             @Override
             public void onFailure(Call<RegisterResponse> call, Throwable t) {
                 callback.onFailureOpenEvents();
+                System.out.println(t.getMessage());
             }
         });
 
@@ -113,6 +114,7 @@ public class APIClient {
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 callback.onFailureOpenEvents();
+                System.out.println(t.getMessage());
             }
         });
     }
@@ -132,6 +134,7 @@ public class APIClient {
             @Override
             public void onFailure(Call<List<UsersResponse>> call, Throwable t) {
                 callback.onFailureOpenEvents();
+                System.out.println(t.getMessage());
             }
         });
 
@@ -147,6 +150,7 @@ public class APIClient {
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
                 callback.onFailureOpenEvents();
+                System.out.println(t.getMessage());
             }
         });
     }
@@ -160,7 +164,7 @@ public class APIClient {
 
             @Override
             public void onFailure(Call<List<UserResponse>> call, Throwable t) {
-
+                System.out.println(t.getMessage());
             }
         });
     }
@@ -174,7 +178,7 @@ public class APIClient {
 
             @Override
             public void onFailure(Call<UserStatisticsResponse> call, Throwable t) {
-
+                System.out.println(t.getMessage());
             }
         });
     }
@@ -189,6 +193,7 @@ public class APIClient {
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
                 callback.onFailureOpenEvents();
+                System.out.println(t.getMessage());
             }
         });
     }
