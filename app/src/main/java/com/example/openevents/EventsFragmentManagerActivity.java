@@ -1,10 +1,11 @@
 package com.example.openevents;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.openevents.Fragments.EventsFragment;
 import com.example.openevents.Fragments.ExploreFragment;
@@ -14,7 +15,7 @@ import com.example.openevents.Fragments.TimelineFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class EventsFragmentManagerActivity extends AppCompatActivity {
+public class EventsFragmentManagerActivity extends AppCompatActivity implements EventsFragment.EventsFragmentOutput {
 
     BottomNavigationView navigationView;
 
@@ -35,7 +36,7 @@ public class EventsFragmentManagerActivity extends AppCompatActivity {
 
     private NavigationBarView.OnItemSelectedListener selectedListener = menuItem -> {
         switch (menuItem.getItemId()) {
-
+            //TODO: Rename de los ids y cambio de las imagenes a las de las opciones que nos toca.
             case R.id.explore_events:
                 ExploreFragment exploreFragmentfragment = new ExploreFragment();
                 FragmentTransaction exploreFragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -75,4 +76,13 @@ public class EventsFragmentManagerActivity extends AppCompatActivity {
     };
 
 
+    @Override
+    public void NavigateToCreate() {
+        //TODO: descomentar y testear intent.
+        /*Intent i = new Intent();
+        startActivity(i);*/
+
+        Toast.makeText(this,"Test button create",Toast.LENGTH_SHORT).show();
+
+    }
 }

@@ -1,13 +1,15 @@
 package com.example.openevents.Fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+
+import com.example.openevents.EventsFragmentManagerActivity;
 import com.example.openevents.R;
 
 /**
@@ -15,7 +17,17 @@ import com.example.openevents.R;
  * Use the {@link EventsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+
+
+
 public class EventsFragment extends Fragment {
+
+
+    public interface EventsFragmentOutput {
+        void NavigateToCreate();
+    }
+
+    private Button btnCreateEvent;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -63,6 +75,17 @@ public class EventsFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_events, container, false);
         //TODO: Find view by id de los elemenots del fragmens par ahacer las acciones.
+
+        btnCreateEvent = v.findViewById(R.id.bt_create_event);
+        btnCreateEvent.setOnClickListener(view -> {
+
+            if (getActivity() instanceof EventsFragmentOutput){
+                ((EventsFragmentOutput) getActivity()).NavigateToCreate();
+            }
+
+        });
+
+
         return v;
     }
 }
