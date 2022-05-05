@@ -78,11 +78,11 @@ public class EventsFragmentManagerActivity extends AppCompatActivity implements 
 
     @Override
     public void NavigateToCreate() {
-        //TODO: descomentar y testear intent.
-        /*Intent i = new Intent();
-        startActivity(i);*/
+        //TODO: Cambiar y crear la activity correspondiente, esto solo es un test.
+        Intent i = new Intent(this,SearchActivity.class );
+        startActivity(i);
 
-        Toast.makeText(this,"Test button create",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,"Test button create",Toast.LENGTH_SHORT).show();
 
     }
 }
