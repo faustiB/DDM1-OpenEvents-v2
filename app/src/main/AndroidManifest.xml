@@ -22,7 +22,7 @@
             android:name=".TimelineActivity"
             android:exported="false" />
         <activity
-            android:name=".EventsActivity"
+            android:name=".EventsFragmentManagerActivity"
             android:exported="false" />
         <activity
             android:name=".SplashScreenActivity"
