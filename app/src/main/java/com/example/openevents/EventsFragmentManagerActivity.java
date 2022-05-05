@@ -5,14 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
+import com.example.openevents.Fragments.EventsFragment;
+import com.example.openevents.Fragments.ExploreFragment;
+import com.example.openevents.Fragments.MessagesFragment;
+import com.example.openevents.Fragments.SearchUsersFragment;
+import com.example.openevents.Fragments.TimelineFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class EventsFragmentManagerActivity extends AppCompatActivity {
 
-    ActionBar actionBar;
     BottomNavigationView navigationView;
 
     @Override

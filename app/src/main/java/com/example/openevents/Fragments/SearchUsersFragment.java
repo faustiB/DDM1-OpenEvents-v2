@@ -1,4 +1,4 @@
-package com.example.openevents;
+package com.example.openevents.Fragments;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.openevents.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link EventsFragment#newInstance} factory method to
+ * Use the {@link SearchUsersFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EventsFragment extends Fragment {
+public class SearchUsersFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ public class EventsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public EventsFragment() {
+    public SearchUsersFragment() {
         // Required empty public constructor
     }
 
@@ -34,11 +36,11 @@ public class EventsFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment EventsFragment.
+     * @return A new instance of fragment SearchUsersFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static EventsFragment newInstance(String param1, String param2) {
-        EventsFragment fragment = new EventsFragment();
+    public static SearchUsersFragment newInstance(String param1, String param2) {
+        SearchUsersFragment fragment = new SearchUsersFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +61,8 @@ public class EventsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_events, container, false);
+        View v = inflater.inflate(R.layout.fragment_search_users, container, false);
+        //TODO: Find view by id de los elemenots del fragmens par ahacer las acciones.
+        return v;
     }
 }
