@@ -3,6 +3,7 @@ package com.example.openevents;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -32,9 +33,9 @@ public class EventsFragmentManagerActivity extends AppCompatActivity implements 
 
     }
 
+    @SuppressLint("NonConstantResourceId")
     private NavigationBarView.OnItemSelectedListener selectedListener = menuItem -> {
         switch (menuItem.getItemId()) {
-            //TODO: Rename de los ids y cambio de las imagenes a las de las opciones que nos toca.
             case R.id.explore_events:
                 ExploreFragment exploreFragmentfragment = new ExploreFragment();
                 FragmentTransaction exploreFragmentTransaction = getSupportFragmentManager().beginTransaction();
