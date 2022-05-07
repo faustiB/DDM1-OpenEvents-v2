@@ -5,7 +5,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.example.openevents.Fragments.EventsFragment;
 import com.example.openevents.Fragments.ExploreFragment;
@@ -71,6 +70,7 @@ public class EventsFragmentManagerActivity extends AppCompatActivity implements 
                 searchusersFragmentTransaction.replace(R.id.flFragment, searchUsersFragment, "");
                 searchusersFragmentTransaction.commit();
                 return true;
+                //TODO: Añadir otra opción de mi propio usuario (incluir un fragment tb de my profile)
         }
         return false;
     };
@@ -78,11 +78,7 @@ public class EventsFragmentManagerActivity extends AppCompatActivity implements 
 
     @Override
     public void NavigateToCreate() {
-        //TODO: Cambiar y crear la activity correspondiente, esto solo es un test.
-        Intent i = new Intent(this,SearchActivity.class );
+        Intent i = new Intent(this, CreateEventActivity.class );
         startActivity(i);
-
-        //Toast.makeText(this,"Test button create",Toast.LENGTH_SHORT).show();
-
     }
 }
