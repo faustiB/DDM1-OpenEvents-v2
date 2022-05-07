@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.example.openevents.Fragments.EventsFragment;
 import com.example.openevents.Fragments.ExploreFragment;
+import com.example.openevents.Fragments.ProfileFragment;
 import com.example.openevents.Fragments.SearchUsersFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -54,7 +55,14 @@ public class EventsFragmentManagerActivity extends AppCompatActivity implements 
                 searchusersFragmentTransaction.replace(R.id.flFragment, searchUsersFragment, "");
                 searchusersFragmentTransaction.commit();
                 return true;
-                //TODO: Añadir otra opción de mi propio usuario (incluir un fragment tb de my profile)
+
+            case R.id.profile:
+                ProfileFragment profileFragment = new ProfileFragment();
+                FragmentTransaction profileFragmentTransaction = getSupportFragmentManager().beginTransaction();
+                profileFragmentTransaction.replace(R.id.flFragment, profileFragment, "");
+                profileFragmentTransaction.commit();
+                return true;
+
         }
         return false;
     };

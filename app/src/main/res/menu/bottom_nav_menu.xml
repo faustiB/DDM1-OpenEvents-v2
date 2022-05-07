@@ -9,4 +9,7 @@
     <item android:id="@+id/search_users"
           android:title="@string/search_users"
           android:icon="@drawable/search" />
+    <item android:id="@+id/profile"
+          android:title="@string/profile"
+          android:icon="@drawable/profile" />
 </menu>
