@@ -4,14 +4,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class CreateEventActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+import com.example.openevents.API.APIClient;
 
+public class CreateEventActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    //TODO: preguntar cuales son las categorías.
     String[] categories = {"Cat1", "Cat2", "Cat3", "Cat4"};
     Spinner spinnerCategories;
+
+    private APIClient apiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +24,13 @@ public class CreateEventActivity extends AppCompatActivity implements AdapterVie
         setContentView(R.layout.activity_create_event);
 
         configureSpinner();
+
+        apiClient = APIClient.getInstance(getApplicationContext());
+
+        Button btnCreateEvent = findViewById(R.id.bt_create_event);
+        btnCreateEvent.setOnClickListener(view -> {
+            //TODO:request para crear evento
+        });
 
     }
 

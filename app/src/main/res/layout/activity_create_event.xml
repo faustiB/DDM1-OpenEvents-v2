@@ -30,7 +30,7 @@
             android:id="@+id/tv_create_event_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title"
+            android:text="@string/title"
             android:textColor="@color/black" />
 
         <EditText
@@ -38,14 +38,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="Your title"
+            android:hint="@string/your_title"
             android:textSize="15sp" />
 
         <TextView
             android:id="@+id/tv_create_event_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description"
+            android:text="@string/description"
             android:textColor="@color/black"
             android:layout_marginTop="10dp"/>
 
@@ -54,14 +54,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="Your description"
+            android:hint="@string/your_description"
             android:textSize="15sp" />
 
+        <TextView
+            android:id="@+id/tv_create_event_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/location"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:id="@+id/et_create_event_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="@string/your_location"
+            android:textSize="15sp" />
         <TextView
             android:id="@+id/tv_create_event_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Category"
+            android:text="@string/category"
             android:textColor="@color/black"
             android:layout_marginTop="10dp"/>
 
@@ -69,13 +84,90 @@
             android:id="@+id/sp_create_event_categories"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:spinnerMode="dialog"
+            android:spinnerMode="dropdown"
             android:prompt="@string/select"/>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:id="@+id/tv_create_event_participants"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="10dp"
+                android:text="@string/participants"
+                android:textColor="@color/black"/>
+
+            <EditText
+                android:id="@+id/et_create_event_participants"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+
+
+        </LinearLayout>
+
+<!--TODO: Format date , comentar con manel-->
+        <TextView
+            android:id="@+id/tv_create_event_start_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start_date"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:id="@+id/et_create_event_start_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="@string/start_date_of_event"
+            android:inputType="date"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_create_event_end_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/end_date"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:id="@+id/et_create_event_end_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="@string/end_date_of_event"
+            android:inputType="date"
+            android:textSize="15sp" />
+        <TextView
+            android:id="@+id/tv_create_event_profile_picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/profile_picture"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/et_create_event_profile_picture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="@string/profile_picture_placeholder"
+            android:textSize="15sp" />
+        <Button
+            android:id="@+id/bt_register_create_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:text="@string/create_event"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
-
-
-
 
 
 </LinearLayout>
