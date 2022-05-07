@@ -8,9 +8,7 @@ import android.os.Bundle;
 
 import com.example.openevents.Fragments.EventsFragment;
 import com.example.openevents.Fragments.ExploreFragment;
-import com.example.openevents.Fragments.MessagesFragment;
 import com.example.openevents.Fragments.SearchUsersFragment;
-import com.example.openevents.Fragments.TimelineFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -48,20 +46,6 @@ public class EventsFragmentManagerActivity extends AppCompatActivity implements 
                 FragmentTransaction eventsFragmentTransaction = getSupportFragmentManager().beginTransaction();
                 eventsFragmentTransaction.replace(R.id.flFragment, eventsFragment, "");
                 eventsFragmentTransaction.commit();
-                return true;
-
-            case R.id.timeline:
-                TimelineFragment timelineFragment = new TimelineFragment();
-                FragmentTransaction timelineFragmentTransaction = getSupportFragmentManager().beginTransaction();
-                timelineFragmentTransaction.replace(R.id.flFragment, timelineFragment, "");
-                timelineFragmentTransaction.commit();
-                return true;
-
-            case R.id.messages:
-                MessagesFragment messagesFragment = new MessagesFragment();
-                FragmentTransaction messagesFragmentTransaction = getSupportFragmentManager().beginTransaction();
-                messagesFragmentTransaction.replace(R.id.flFragment, messagesFragment, "");
-                messagesFragmentTransaction.commit();
                 return true;
 
             case R.id.search_users:

@@ -16,12 +16,6 @@
             android:name=".CreateEventActivity"
             android:exported="false" />
         <activity
-            android:name=".MessagesActivity"
-            android:exported="false" />
-        <activity
-            android:name=".TimelineActivity"
-            android:exported="false" />
-        <activity
             android:name=".EventsFragmentManagerActivity"
             android:exported="false" />
         <activity
