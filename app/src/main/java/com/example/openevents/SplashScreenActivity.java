@@ -22,8 +22,10 @@ public class SplashScreenActivity extends AppCompatActivity {
                 Intent i;
 
                 if (accessToken != null) {
-                     i = new Intent(SplashScreenActivity.this, EventsFragmentManagerActivity.class);
-
+                    sharedPreferences = getApplicationContext().getSharedPreferences("email", MODE_PRIVATE);
+                    String email = sharedPreferences.getString("email", null);
+                    i = new Intent(SplashScreenActivity.this, EventsFragmentManagerActivity.class);
+                    i.putExtra("email", email);
                 } else {
                     i = new Intent(SplashScreenActivity.this, LoginActivity.class);
                 }

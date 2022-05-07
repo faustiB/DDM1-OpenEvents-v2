@@ -1,6 +1,7 @@
 package com.example.openevents;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,6 +49,10 @@ public class LoginActivity extends AppCompatActivity {
                 public void onResponseOpenEvents(Call<LoginResponse> call, Response<LoginResponse> response) {
                     if (response.isSuccessful()) {
                         Intent intent = new Intent(getApplicationContext(), EventsFragmentManagerActivity.class);
+
+                        //Pass email as parameter to the next activity and save it in the shared preferences
+                        intent.putExtra("email", etEmail.getText().toString());
+                        saveEmail(etEmail.getText().toString());
                         startActivity(intent);
                         finish();
                     } else {
@@ -63,5 +68,12 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void saveEmail(String email) {
+        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("email", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("email", email);
+        editor.apply();
     }
 }

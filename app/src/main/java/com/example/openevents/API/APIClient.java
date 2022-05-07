@@ -1,14 +1,12 @@
 package com.example.openevents.API;
 
 import static android.content.Context.MODE_PRIVATE;
-import static android.provider.Settings.System.getString;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 
-import com.example.openevents.R;
 import com.example.openevents.Request.EditUserRequest;
 import com.example.openevents.Request.LoginRequest;
 import com.example.openevents.Request.RegisterRequest;
@@ -155,13 +153,12 @@ public class APIClient {
         });
     }
 
-    public void searchUsersByName(String name, OpenEventsCallback<List<UserResponse>> callback) {
-        this.service.searchUsersByName(name).enqueue(new Callback<List<UserResponse>>() {
+    public void searchUsersByString(String name, OpenEventsCallback<List<UserResponse>> callback) {
+        this.service.searchUsersByString(name).enqueue(new Callback<List<UserResponse>>() {
             @Override
             public void onResponse(Call<List<UserResponse>> call, Response<List<UserResponse>> response) {
                 callback.onResponseOpenEvents(call, response);
             }
-
             @Override
             public void onFailure(Call<List<UserResponse>> call, Throwable t) {
                 System.out.println(t.getMessage());
