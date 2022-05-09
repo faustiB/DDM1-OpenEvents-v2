@@ -27,9 +27,7 @@ import retrofit2.Response;
 
 public class EventsFragmentManagerActivity extends AppCompatActivity implements EventsFragment.EventsFragmentOutput {
 
-    private APIClient apiClient;
     BottomNavigationView navigationView;
-    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +36,6 @@ public class EventsFragmentManagerActivity extends AppCompatActivity implements 
 
         Intent i = getIntent();
         String email = i.getStringExtra("email");
-        getUserId(email);
 
         navigationView = findViewById(R.id.bottomNavigationView);
         navigationView.setOnItemSelectedListener(selectedListener);
@@ -89,26 +86,5 @@ public class EventsFragmentManagerActivity extends AppCompatActivity implements 
     public void NavigateToCreate() {
         Intent i = new Intent(this, CreateEventActivity.class );
         startActivity(i);
-    }
-
-    private void getUserId(String email) {
-        apiClient = APIClient.getInstance(getApplicationContext());
-        apiClient.searchUsersByString(email, new OpenEventsCallback<List<UserResponse>>() {
-                @Override
-                public void onResponseOpenEvents(Call<List<UserResponse>> call, Response<List<UserResponse>> response) {
-                    if (response.isSuccessful()) {
-                        List<UserResponse> users = response.body();
-                        System.out.println(users.get(0).getName() + " " + users.get(0).getId());
-                        if (users.size() > 0) {
-                            userId = users.get(0).getId();
-                        }
-                    }
-                }
-                @Override
-                public void onFailureOpenEvents() {
-                    System.out.println("failure");
-                }
-        }
-        );
     }
 }

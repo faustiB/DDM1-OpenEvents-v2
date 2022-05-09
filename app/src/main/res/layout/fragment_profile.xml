@@ -23,7 +23,6 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:contentDescription="Profile picture" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -41,8 +40,8 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="16dp"
-                    android:gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:gravity="start"
                     android:text="James"
                     android:textColor="@color/black"
                     android:textSize="40sp"
@@ -53,8 +52,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="16dp"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:text="Cardenas"
                     android:textColor="@color/black"
                     android:textSize="40sp"
@@ -92,7 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Statistics:"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_marginStart="10dp"/>
@@ -100,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Average Score:"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textColor="@color/black"
                 android:textStyle="normal"
                 android:layout_marginStart="30dp"
@@ -116,7 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Number of comments:"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textColor="@color/black"
                 android:textStyle="normal"
                 android:layout_marginStart="30dp"/>
@@ -131,7 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Percentage of comments:"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textColor="@color/black"
                 android:textStyle="normal"
                 android:layout_marginStart="30dp"/>
@@ -158,7 +156,8 @@
             android:layout_gravity="bottom|center"
             android:contentDescription="Edit user profile button"
             android:text="Edit user profile"
-            app:backgroundTint="@color/neutral_blue"/>
+            android:textColor="@color/white"
+            app:backgroundTint="@color/primary"/>
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/logout"
             android:layout_width="wrap_content"
@@ -168,8 +167,10 @@
             android:contentDescription="Logout button"
             android:text="Logout"
             app:icon="@drawable/ic_baseline_logout_24"
+            app:iconTint="@color/white"
             style="@style/TextAppearance.Material3.TitleMedium"
-            app:backgroundTint="@color/logout"/>
+            app:backgroundTint="@color/logout"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
 </LinearLayout>
