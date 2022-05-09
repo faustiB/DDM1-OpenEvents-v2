@@ -70,7 +70,7 @@ public class ProfileFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        getUserId("guillem@openevents.com");
+        /*getUserId("guillem@openevents.com");
         System.out.println("User id: " + userId);
 
         ImageView imageView = getView().findViewById(R.id.profile_picture);
@@ -89,7 +89,7 @@ public class ProfileFragment extends Fragment {
         percentageComments.setText("50%");
 
         //load an image from the internet using Glide
-        Glide.with(getActivity()).load("https://i.imgur.com/ghy8Xx1.png").into(imageView);
+        Glide.with(getActivity()).load("https://i.imgur.com/ghy8Xx1.png").into(imageView);*/
 
     }
 
@@ -97,7 +97,30 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View v =  inflater.inflate(R.layout.fragment_profile, container, false);
+
+        getUserId("guillem@openevents.com");
+        System.out.println("User id: " + userId);
+
+        ImageView imageView = v.findViewById(R.id.profile_picture);
+        TextView user_name = v.findViewById(R.id.user_name);
+        TextView last_name = v.findViewById(R.id.user_surname);
+        TextView email = v.findViewById(R.id.user_email);
+        TextView avgScore = v.findViewById(R.id.average_score);
+        TextView numComments =  v.findViewById(R.id.number_user_comments);
+        TextView percentageComments = v.findViewById(R.id.percentage_of_comments);
+
+        user_name.setText("Guillem");
+        last_name.setText("Miro");
+        email.setText("guillem@openevents.com");
+        avgScore.setText("4.5");
+        numComments.setText("10");
+        percentageComments.setText("50%");
+
+        //load an image from the internet using Glide
+        Glide.with(getActivity()).load("https://i.imgur.com/ghy8Xx1.png").into(imageView);
+
+        return v;
     }
 
 
