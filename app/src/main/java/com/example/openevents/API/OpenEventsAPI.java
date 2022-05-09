@@ -1,8 +1,10 @@
 package com.example.openevents.API;
 
+import com.example.openevents.Request.CreateEventRequest;
 import com.example.openevents.Request.EditUserRequest;
 import com.example.openevents.Request.LoginRequest;
 import com.example.openevents.Request.RegisterRequest;
+import com.example.openevents.Response.CreateEventResponse;
 import com.example.openevents.Response.LoginResponse;
 import com.example.openevents.Response.RegisterResponse;
 import com.example.openevents.Response.UserResponse;
@@ -50,4 +52,11 @@ public interface OpenEventsAPI {
 
     @PUT("users")
     Call<UserResponse> updateUser(EditUserRequest editUserRequest);
+
+    /**
+     * Events
+     */
+    @POST("events")
+    Call<CreateEventResponse> createEvent(@Body CreateEventRequest createEventRequest);
+
 }

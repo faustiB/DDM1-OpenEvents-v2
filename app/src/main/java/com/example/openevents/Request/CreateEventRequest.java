@@ -8,10 +8,10 @@ public class CreateEventRequest {
     private String description;
     private String eventStart_date;
     private String eventEnd_date;
-    private String n_participants;
+    private int n_participants;
     private String type;
 
-    public CreateEventRequest(String name, String image, String location, String description, String eventStart_date, String eventEnd_date, String n_participants, String type) {
+    public CreateEventRequest(String name, String image, String location, String description, String eventStart_date, String eventEnd_date, int n_participants, String type) {
         this.name = name;
         this.image = image;
         this.location = location;

@@ -43,4 +43,6 @@
     <string name="start_date_of_event">Start date of event</string>
     <string name="end_date">End date</string>
     <string name="end_date_of_event">End date of event</string>
+    <string name="name_of_event">Name of Event</string>
+    <string name="name">Name</string>
 </resources>
