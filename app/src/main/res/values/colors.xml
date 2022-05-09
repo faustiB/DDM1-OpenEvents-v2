@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#66ccff</color>
     <color name="grey">#5F5F5F</color>
+    <color name="logout">#b23b3b</color>
+    <color name="neutral_blue">#adc4dd</color>
 </resources>

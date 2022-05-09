@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
@@ -58,16 +59,13 @@
                     android:textColor="@color/black"
                     android:textSize="40sp"
                     android:textStyle="bold" />
-
             </LinearLayout>
-
         </LinearLayout>
-
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="6"
+        android:layout_weight="1"
         android:orientation="vertical">
         <TextView
             android:id="@+id/user_email"
@@ -76,15 +74,102 @@
             android:padding="10sp"
             android:textStyle="italic"
             android:textColor="@color/design_default_color_primary"
-            android:textSize="20sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Statistics:"
-            android:textColor="@color/design_default_color_primary"
-            android:textSize="30sp"
-            android:textStyle="italic"
+            android:textSize="20sp"
             android:layout_marginStart="10dp"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Statistics:"
+                android:textSize="25sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Average Score:"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:textStyle="normal"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"/>
+            <TextView
+                android:id="@+id/average_score"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="0%"
+                android:textColor="@color/black" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Number of comments:"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:textStyle="normal"
+                android:layout_marginStart="30dp"/>
+            <TextView
+                android:id="@+id/number_user_comments"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/black" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Percentage of comments:"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:textStyle="normal"
+                android:layout_marginStart="30dp"/>
+            <TextView
+                android:id="@+id/percentage_of_comments"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="0%"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/edit_user_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_gravity="bottom|center"
+            android:contentDescription="Edit user profile button"
+            android:text="Edit user profile"
+            app:backgroundTint="@color/neutral_blue"/>
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:gravity="center"
+            android:contentDescription="Logout button"
+            android:text="Logout"
+            app:icon="@drawable/ic_baseline_logout_24"
+            style="@style/TextAppearance.Material3.TitleMedium"
+            app:backgroundTint="@color/logout"/>
+    </LinearLayout>
+
 </LinearLayout>
