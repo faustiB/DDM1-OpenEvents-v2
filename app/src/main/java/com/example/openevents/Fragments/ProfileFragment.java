@@ -1,6 +1,9 @@
 package com.example.openevents.Fragments;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,6 +20,7 @@ import com.example.openevents.API.OpenEventsCallback;
 import com.example.openevents.EditProfileActivity;
 import com.example.openevents.R;
 import com.example.openevents.Response.UserResponse;
+import com.example.openevents.Response.UserStatisticsResponse;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import java.util.List;
@@ -82,24 +86,8 @@ public class ProfileFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
         setViews(v);
         setUserData(new UserResponse(1, "...", "...", "...", "...", "..."));
-
-        apiClient = APIClient.getInstance(getActivity());
-        apiClient.searchUsersByString("bet@openevents.com", new OpenEventsCallback<List<UserResponse>>() {
-                    @Override
-                    public void onResponseOpenEvents(Call<List<UserResponse>> call, Response<List<UserResponse>> response) {
-                        if (response.isSuccessful()) {
-                            List<UserResponse> users = response.body();
-                            if (users.size() > 0) {
-                                setUserData(users.get(0));
-                            }
-                        }
-                    }
-                    @Override
-                    public void onFailureOpenEvents() {
-                        System.out.println("failure");
-                    }
-                }
-        );
+        setStatisticsData(new UserStatisticsResponse(1, 1, 1));
+        executeApiCall();
 
         ExtendedFloatingActionButton fab = v.findViewById(R.id.edit_user_profile);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -132,9 +120,55 @@ public class ProfileFragment extends Fragment {
         last_name.setText(user.getLast_name());
         email.setText(user.getEmail());
         Glide.with(getActivity()).load(user.getImage()).into(imageView);
+    }
 
-        avgScore.setText("22%");
-        numComments.setText("2342");
-        percentageComments.setText("50%");
+    private void setStatisticsData(UserStatisticsResponse statistics) {
+
+        avgScore.setText(String.valueOf(statistics.getAvg_score()));
+        numComments.setText(String.valueOf(statistics.getNum_coments()));
+        percentageComments.setText(statistics.getPercentage_commenters_below() + "%");
+    }
+
+    private void executeApiCall() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("email", MODE_PRIVATE);
+        String email = sharedPreferences.getString("email", null);
+
+        apiClient = APIClient.getInstance(getActivity());
+        apiClient.searchUsersByString(email, new OpenEventsCallback<List<UserResponse>>() {
+                    @Override
+                    public void onResponseOpenEvents(Call<List<UserResponse>> call, Response<List<UserResponse>> response) {
+                        if (response.isSuccessful()) {
+                            List<UserResponse> users = response.body();
+                            if (users.size() > 0) {
+                                setUserData(users.get(0));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailureOpenEvents() {
+                        System.out.println("failure");
+                    }
+                }
+        );
+
+        SharedPreferences sharedPreferences1 = getActivity().getSharedPreferences("userId", MODE_PRIVATE);
+        String userId = sharedPreferences1.getString("userId", null);
+        int user = Integer.parseInt(userId);
+
+        apiClient.getUserStatistics(user, new OpenEventsCallback<UserStatisticsResponse>() {
+            @Override
+            public void onResponseOpenEvents(Call<UserStatisticsResponse> call, Response<UserStatisticsResponse> response) {
+                if (response.isSuccessful()) {
+                    UserStatisticsResponse statistics = response.body();
+                    setStatisticsData(statistics);
+                }
+            }
+
+            @Override
+            public void onFailureOpenEvents() {
+                System.out.println("failure");
+            }
+        });
     }
 }

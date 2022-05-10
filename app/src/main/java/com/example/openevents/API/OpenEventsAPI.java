@@ -18,6 +18,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface OpenEventsAPI {
@@ -48,7 +49,7 @@ public interface OpenEventsAPI {
     Call<List<UserResponse>> searchUsersByString(@Query("s") String name);
 
     @GET("users/{id}/statistics")
-    Call<UserStatisticsResponse> getUserStatistics(int id);
+    Call<UserStatisticsResponse> getUserStatistics(@Path("id") int id);
 
     @PUT("users")
     Call<UserResponse> updateUser(EditUserRequest editUserRequest);
