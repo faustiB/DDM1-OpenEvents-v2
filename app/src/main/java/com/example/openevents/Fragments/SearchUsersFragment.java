@@ -1,5 +1,6 @@
 package com.example.openevents.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -18,6 +19,7 @@ import com.example.openevents.Adapters.UsersAdapter;
 import com.example.openevents.R;
 import com.example.openevents.Response.UserResponse;
 import com.example.openevents.Response.UsersResponse;
+import com.example.openevents.UserActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -86,6 +88,15 @@ public class SearchUsersFragment extends Fragment implements SearchView.OnQueryT
         setViews(v);
         searchView.setOnQueryTextListener(this);
         executeApiCall("");
+
+        /*view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    UserResponse user = users.get(getAdapterPosition());
+                    Intent intent = new Intent(context, UserActivity.class);
+                    intent.putExtra("user", user);
+                }
+            });*/
 
         return v;
     }

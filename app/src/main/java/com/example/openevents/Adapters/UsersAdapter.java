@@ -13,13 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.openevents.R;
-import com.example.openevents.Response.EventResponse;
 import com.example.openevents.Response.UserResponse;
-import com.example.openevents.Response.UsersResponse;
 
 import java.util.ArrayList;
 
-public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder>{
+public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> {
     Context context;
     ArrayList<UserResponse> users;
 
@@ -40,7 +38,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull UsersAdapter.ViewHolder holder, int position) {
-        holder.name.setText(users.get(position).getName()+ " " + users.get(position).getLast_name());
+        holder.name.setText(users.get(position).getName() + " " + users.get(position).getLast_name());
         Glide.with(context).load(users.get(position).getImage()).into(holder.userImage);
     }
 
@@ -59,5 +57,6 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder>{
             userImage = view.findViewById(R.id.card_image);
             name = view.findViewById(R.id.card_user_name);
         }
+
     }
 }
