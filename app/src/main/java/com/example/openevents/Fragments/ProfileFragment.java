@@ -2,6 +2,9 @@ package com.example.openevents.Fragments;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.example.openevents.API.APIClient;
 import com.example.openevents.API.OpenEventsCallback;
 import com.example.openevents.EditProfileActivity;
+import com.example.openevents.LoginActivity;
 import com.example.openevents.R;
 import com.example.openevents.Response.UserResponse;
 import com.example.openevents.Response.UserStatisticsResponse;
@@ -93,12 +97,15 @@ public class ProfileFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), EditProfileActivity.class);
-                intent.putExtra("user_name", user_name.getText().toString());
-                intent.putExtra("last_name", last_name.getText().toString());
-                intent.putExtra("email", email.getText().toString());
-                intent.putExtra("profile_picture", "https://i.imgur.com/ghy8Xx1.png");
-                startActivity(intent);
+                editProfile();
+            }
+        });
+
+        ExtendedFloatingActionButton logout = v.findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logout();
             }
         });
 
@@ -170,5 +177,27 @@ public class ProfileFragment extends Fragment {
                 System.out.println("failure");
             }
         });
+    }
+
+    private void editProfile() {
+        Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+        intent.putExtra("user_name", user_name.getText().toString());
+        intent.putExtra("last_name", last_name.getText().toString());
+        intent.putExtra("email", email.getText().toString());
+        intent.putExtra("profile_picture", "https://i.imgur.com/ghy8Xx1.png");
+        startActivity(intent);
+    }
+
+    private void logout() {
+        SharedPreferences email = getActivity().getSharedPreferences("email", MODE_PRIVATE);
+        SharedPreferences token = getActivity().getSharedPreferences("token", MODE_PRIVATE);
+        SharedPreferences userId = getActivity().getSharedPreferences("userId", MODE_PRIVATE);
+
+        email.edit().clear().apply();
+        token.edit().clear().apply();
+        userId.edit().clear().apply();
+
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        startActivity(intent);
     }
 }
