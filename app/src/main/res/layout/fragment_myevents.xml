@@ -3,10 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.EventsFragment"
+    tools:context=".Fragments.MyEventsFragment"
     android:orientation="vertical">
-
-    <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,30 +15,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/events"
+            android:text="@string/my_events"
             android:textSize="20dp"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:layout_weight="1"
             android:layout_marginStart="10dp"/>
 
-        <Button
-            android:id="@+id/bt_create_event"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity=""
-            android:text="@string/plus_sign"
-            android:layout_marginEnd="15dp"/>
-
     </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_events"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
-
-
-
-
 </LinearLayout>

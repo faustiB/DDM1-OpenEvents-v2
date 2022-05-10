@@ -7,11 +7,10 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.openevents.API.APIClient;
 import com.example.openevents.API.OpenEventsCallback;
-import com.example.openevents.Fragments.EventsFragment;
+import com.example.openevents.Fragments.MyEventsFragment;
 import com.example.openevents.Fragments.ExploreFragment;
 import com.example.openevents.Fragments.ProfileFragment;
 import com.example.openevents.Fragments.SearchUsersFragment;
@@ -20,13 +19,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
-public class EventsFragmentManagerActivity extends AppCompatActivity implements EventsFragment.EventsFragmentOutput {
+public class EventsFragmentManagerActivity extends AppCompatActivity implements MyEventsFragment.EventsFragmentOutput {
 
     BottomNavigationView navigationView;
 
@@ -50,16 +47,16 @@ public class EventsFragmentManagerActivity extends AppCompatActivity implements 
     private NavigationBarView.OnItemSelectedListener selectedListener = menuItem -> {
         switch (menuItem.getItemId()) {
             case R.id.explore_events:
-                ExploreFragment exploreFragmentfragment = new ExploreFragment();
+                ExploreFragment exploreFragment = new ExploreFragment();
                 FragmentTransaction exploreFragmentTransaction = getSupportFragmentManager().beginTransaction();
-                exploreFragmentTransaction.replace(R.id.flFragment, exploreFragmentfragment, "");
+                exploreFragmentTransaction.replace(R.id.flFragment, exploreFragment, "");
                 exploreFragmentTransaction.commit();
                 return true;
 
-            case R.id.events:
-                EventsFragment eventsFragment = new EventsFragment();
+            case R.id.myevents:
+                MyEventsFragment myEventsFragment = new MyEventsFragment();
                 FragmentTransaction eventsFragmentTransaction = getSupportFragmentManager().beginTransaction();
-                eventsFragmentTransaction.replace(R.id.flFragment, eventsFragment, "");
+                eventsFragmentTransaction.replace(R.id.flFragment, myEventsFragment, "");
                 eventsFragmentTransaction.commit();
                 return true;
 
