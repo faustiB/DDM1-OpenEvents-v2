@@ -12,6 +12,7 @@ import com.example.openevents.Request.EditUserRequest;
 import com.example.openevents.Request.LoginRequest;
 import com.example.openevents.Request.RegisterRequest;
 import com.example.openevents.Response.CreateEventResponse;
+import com.example.openevents.Response.EventResponse;
 import com.example.openevents.Response.LoginResponse;
 import com.example.openevents.Response.RegisterResponse;
 import com.example.openevents.Response.UserResponse;
@@ -210,4 +211,20 @@ public class APIClient {
             }
         });
     }
+
+    public void getEvents(OpenEventsCallback<List<EventResponse>> callback){
+        this.service.getEvents().enqueue(new Callback<List<EventResponse>>() {
+            @Override
+            public void onResponse(Call<List<EventResponse>> call, Response<List<EventResponse>> response) {
+                callback.onResponseOpenEvents(call,response);
+            }
+
+            @Override
+            public void onFailure(Call<List<EventResponse>> call, Throwable t) {
+                callback.onFailureOpenEvents();
+            }
+        });
+
+    }
+
 }

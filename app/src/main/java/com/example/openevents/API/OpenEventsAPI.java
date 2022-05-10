@@ -5,6 +5,7 @@ import com.example.openevents.Request.EditUserRequest;
 import com.example.openevents.Request.LoginRequest;
 import com.example.openevents.Request.RegisterRequest;
 import com.example.openevents.Response.CreateEventResponse;
+import com.example.openevents.Response.EventResponse;
 import com.example.openevents.Response.LoginResponse;
 import com.example.openevents.Response.RegisterResponse;
 import com.example.openevents.Response.UserResponse;
@@ -59,5 +60,8 @@ public interface OpenEventsAPI {
      */
     @POST("events")
     Call<CreateEventResponse> createEvent(@Body CreateEventRequest createEventRequest);
+
+    @GET("events")
+    Call<List<EventResponse>> getEvents();
 
 }

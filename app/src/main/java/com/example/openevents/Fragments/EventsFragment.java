@@ -1,16 +1,32 @@
 package com.example.openevents.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.openevents.API.APIClient;
+import com.example.openevents.API.OpenEventsCallback;
+import com.example.openevents.Adapters.EventsAdapter;
 import com.example.openevents.EventsFragmentManagerActivity;
 import com.example.openevents.R;
+import com.example.openevents.Request.LoginRequest;
+import com.example.openevents.Response.EventResponse;
+import com.example.openevents.Response.LoginResponse;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +44,8 @@ public class EventsFragment extends Fragment {
     }
 
     private Button btnCreateEvent;
+    private ArrayList<EventResponse> events = new ArrayList<>();
+    EventsAdapter eventsAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -74,7 +92,6 @@ public class EventsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_events, container, false);
-        //TODO: Find view by id de los elemenots del fragmens par ahacer las acciones.
 
         btnCreateEvent = v.findViewById(R.id.bt_create_event);
         btnCreateEvent.setOnClickListener(view -> {
@@ -84,6 +101,33 @@ public class EventsFragment extends Fragment {
             }
 
         });
+
+        eventsAdapter = new EventsAdapter(getContext(),events);
+        RecyclerView rvEvents = v.findViewById(R.id.rv_events);
+        rvEvents.setAdapter(eventsAdapter);
+        rvEvents.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        APIClient apiClient = APIClient.getInstance(getContext());
+
+        apiClient.getEvents(new OpenEventsCallback<List<EventResponse>>() {
+            @Override
+            public void onResponseOpenEvents(Call<List<EventResponse>> call, Response<List<EventResponse>> response) {
+
+                events.clear();
+                if (response.body() != null) {
+                    events.addAll(response.body());
+                    eventsAdapter.notifyDataSetChanged();
+                }
+
+            }
+
+            @Override
+            public void onFailureOpenEvents() {
+                System.out.println("TEST CALL RESPONSE FAIL");
+            }
+        });
+
+
 
 
         return v;
