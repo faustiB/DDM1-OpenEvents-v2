@@ -13,6 +13,9 @@
         android:theme="@style/Theme.OpenEvents"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".EditProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".CreateEventActivity"
             android:exported="false" />
         <activity

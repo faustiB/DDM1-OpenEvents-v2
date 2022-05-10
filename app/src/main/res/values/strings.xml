@@ -45,4 +45,6 @@
     <string name="end_date_of_event">End date of event</string>
     <string name="name_of_event">Name of Event</string>
     <string name="name">Name</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="apply_changes">Apply changes</string>
 </resources>

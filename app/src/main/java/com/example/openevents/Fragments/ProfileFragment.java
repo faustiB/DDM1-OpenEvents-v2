@@ -1,5 +1,6 @@
 package com.example.openevents.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,8 +14,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.openevents.API.APIClient;
 import com.example.openevents.API.OpenEventsCallback;
+import com.example.openevents.EditProfileActivity;
 import com.example.openevents.R;
 import com.example.openevents.Response.UserResponse;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import java.util.List;
 
@@ -69,35 +72,13 @@ public class ProfileFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-        /*getUserId("guillem@openevents.com");
-        System.out.println("User id: " + userId);
-
-        ImageView imageView = getView().findViewById(R.id.profile_picture);
-        TextView user_name = getView().findViewById(R.id.user_name);
-        TextView last_name = getView().findViewById(R.id.user_surname);
-        TextView email = getView().findViewById(R.id.user_email);
-        TextView avgScore = getView().findViewById(R.id.average_score);
-        TextView numComments = getView().findViewById(R.id.number_user_comments);
-        TextView percentageComments = getView().findViewById(R.id.percentage_of_comments);
-
-        user_name.setText("Guillem");
-        last_name.setText("Miro");
-        email.setText("guillem@openevents.com");
-        avgScore.setText("4.5");
-        numComments.setText("10");
-        percentageComments.setText("50%");
-
-        //load an image from the internet using Glide
-        Glide.with(getActivity()).load("https://i.imgur.com/ghy8Xx1.png").into(imageView);*/
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_profile, container, false);
+        View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
         getUserId("guillem@openevents.com");
         System.out.println("User id: " + userId);
@@ -107,7 +88,7 @@ public class ProfileFragment extends Fragment {
         TextView last_name = v.findViewById(R.id.user_surname);
         TextView email = v.findViewById(R.id.user_email);
         TextView avgScore = v.findViewById(R.id.average_score);
-        TextView numComments =  v.findViewById(R.id.number_user_comments);
+        TextView numComments = v.findViewById(R.id.number_user_comments);
         TextView percentageComments = v.findViewById(R.id.percentage_of_comments);
 
         user_name.setText("Guillem");
@@ -119,6 +100,19 @@ public class ProfileFragment extends Fragment {
 
         //load an image from the internet using Glide
         Glide.with(getActivity()).load("https://i.imgur.com/ghy8Xx1.png").into(imageView);
+
+        ExtendedFloatingActionButton fab = v.findViewById(R.id.edit_user_profile);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+                intent.putExtra("user_name", user_name.getText().toString());
+                intent.putExtra("last_name", last_name.getText().toString());
+                intent.putExtra("email", email.getText().toString());
+                intent.putExtra("profile_picture", "https://i.imgur.com/ghy8Xx1.png");
+                startActivity(intent);
+            }
+        });
 
         return v;
     }
@@ -137,6 +131,7 @@ public class ProfileFragment extends Fragment {
                             }
                         }
                     }
+
                     @Override
                     public void onFailureOpenEvents() {
                         System.out.println("failure");
