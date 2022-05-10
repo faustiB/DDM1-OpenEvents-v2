@@ -1,11 +1,21 @@
 package com.example.openevents.Response;
 
-public class UserResponse {
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class UserResponse implements Serializable {
+    @SerializedName("id")
     private int id;
+    @SerializedName("name")
     private String name;
+    @SerializedName("last_name")
     private String last_name;
+    @SerializedName("email")
     private String email;
+    @SerializedName("password")
     private String password;
+    @SerializedName("image")
     private String image;
 
     public UserResponse(int id, String name, String last_name, String email, String password, String image) {

@@ -125,7 +125,7 @@ public class ProfileFragment extends Fragment {
     private void setStatisticsData(UserStatisticsResponse statistics) {
 
         avgScore.setText(String.valueOf(statistics.getAvg_score()));
-        numComments.setText(String.valueOf(statistics.getNum_coments()));
+        numComments.setText(String.valueOf(statistics.getNum_comments()));
         percentageComments.setText(statistics.getPercentage_commenters_below() + "%");
     }
 
