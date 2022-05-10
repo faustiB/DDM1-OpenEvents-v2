@@ -23,6 +23,7 @@
             android:layout_marginStart="10dp"/>
 
         <SearchView
+            android:id="@+id/search_users_widget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
