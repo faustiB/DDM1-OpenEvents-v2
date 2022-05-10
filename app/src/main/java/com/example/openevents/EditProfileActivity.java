@@ -2,15 +2,22 @@ package com.example.openevents;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.openevents.API.APIClient;
+import com.example.openevents.API.OpenEventsCallback;
 import com.example.openevents.Request.EditUserRequest;
 import com.example.openevents.Response.UserResponse;
+
+import retrofit2.Call;
+import retrofit2.Response;
 
 public class EditProfileActivity extends AppCompatActivity {
 
@@ -34,11 +41,11 @@ public class EditProfileActivity extends AppCompatActivity {
             String profilePicture = etProfilePicture.getText().toString();
 
             if (password1.isEmpty() || password2.isEmpty() ) {
-                requestWithoutPassword(name, lastname, email, profilePicture);
+                sendRequest(new EditUserRequest(name, lastname, email, profilePicture));
             } else {
                 if (password1.equals(password2)) {
                     if (password1.length() >= 8) {
-                        requestWithPassword(name, lastname, email, password1, profilePicture);
+                        sendRequest(new EditUserRequest(name, lastname, email, password1, profilePicture));
                     } else {
                         Toast.makeText(this, "Password must be at least 8 characters", Toast.LENGTH_SHORT).show();
                     }
@@ -67,11 +74,26 @@ public class EditProfileActivity extends AppCompatActivity {
         etProfilePicture.setText(getIntent().getStringExtra("profile_picture"));
     }
 
-    private void requestWithPassword(String name, String lastname, String email, String password1, String profilePicture) {
-        EditUserRequest editProfileRequest = new EditUserRequest(name, lastname, email, password1, profilePicture);
-    }
+    private void sendRequest (EditUserRequest editProfileRequest) {
+        APIClient apiClient = APIClient.getInstance(getApplicationContext());
+        apiClient.updateUser(editProfileRequest, new OpenEventsCallback<UserResponse>() {
+            @Override
+            public void onResponseOpenEvents(Call<UserResponse> call, Response<UserResponse> response) {
+                if (response.isSuccessful()) {
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), "User updated", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    }, 500);
+                }
+            }
 
-    private void requestWithoutPassword(String name, String lastname, String email, String profilePicture) {
-        EditUserRequest editProfileRequest = new EditUserRequest(name, lastname, email, profilePicture);
+            @Override
+            public void onFailureOpenEvents() {
+                System.out.println("failure");
+            }
+        });
     }
 }

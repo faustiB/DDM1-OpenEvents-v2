@@ -53,7 +53,7 @@ public interface OpenEventsAPI {
     Call<UserStatisticsResponse> getUserStatistics(@Path("id") int id);
 
     @PUT("users")
-    Call<UserResponse> updateUser(EditUserRequest editUserRequest);
+    Call<UserResponse> updateUser(@Body EditUserRequest editUserRequest);
 
     /**
      * Events
