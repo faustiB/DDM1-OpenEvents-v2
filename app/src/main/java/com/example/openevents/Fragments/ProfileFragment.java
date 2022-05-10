@@ -2,9 +2,6 @@ package com.example.openevents.Fragments;
 
 import static android.content.Context.MODE_PRIVATE;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
