@@ -103,7 +103,6 @@ public class ExploreFragment extends Fragment {
         apiClient.getEvents(new OpenEventsCallback<List<EventResponse>>() {
             @Override
             public void onResponseOpenEvents(Call<List<EventResponse>> call, Response<List<EventResponse>> response) {
-
                 events.clear();
                 if (response.body() != null) {
                     events.addAll(response.body());

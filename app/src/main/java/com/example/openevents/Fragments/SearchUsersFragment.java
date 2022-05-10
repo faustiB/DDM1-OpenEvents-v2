@@ -3,12 +3,28 @@ package com.example.openevents.Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.openevents.API.APIClient;
+import com.example.openevents.API.OpenEventsCallback;
+import com.example.openevents.Adapters.EventsAdapter;
+import com.example.openevents.Adapters.UsersAdapter;
 import com.example.openevents.R;
+import com.example.openevents.Response.UserResponse;
+import com.example.openevents.Response.UsersResponse;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import retrofit2.Call;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +32,9 @@ import com.example.openevents.R;
  * create an instance of this fragment.
  */
 public class SearchUsersFragment extends Fragment {
+
+    private ArrayList<UserResponse> users = new ArrayList<>();
+    UsersAdapter usersAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,7 +81,37 @@ public class SearchUsersFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_search_users, container, false);
-        //TODO: Find view by id de los elemenots del fragmens par ahacer las acciones.
+
+        usersAdapter = new UsersAdapter(getContext(), users);
+        RecyclerView rvUsers = v.findViewById(R.id.rv_users);
+        rvUsers.setAdapter(usersAdapter);
+        rvUsers.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        executeApiCall("");
+
+
         return v;
+    }
+
+    private void executeApiCall(String email) {
+        APIClient apiClient = APIClient.getInstance(getActivity());
+        apiClient.searchUsersByString(email, new OpenEventsCallback<List<UserResponse>>() {
+                    @Override
+                    public void onResponseOpenEvents(Call<List<UserResponse>> call, Response<List<UserResponse>> response) {
+                        if (response.isSuccessful()) {
+                            users.clear();
+                            if (response.body() != null) {
+                                users.addAll(response.body());
+                                usersAdapter.notifyDataSetChanged();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailureOpenEvents() {
+                        System.out.println("failure");
+                    }
+                }
+        );
     }
 }
