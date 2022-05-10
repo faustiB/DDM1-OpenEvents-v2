@@ -21,6 +21,10 @@ public class UserResponse {
         return id;
     }
 
+    public String getIdString() {
+        return String.valueOf(id);
+    }
+
     public String getName() {
         return name;
     }

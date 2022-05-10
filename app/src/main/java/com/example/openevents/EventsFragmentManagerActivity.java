@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -34,8 +35,7 @@ public class EventsFragmentManagerActivity extends AppCompatActivity implements 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events_fragment_manager);
 
-        Intent i = getIntent();
-        String email = i.getStringExtra("email");
+        setUserId();
 
         navigationView = findViewById(R.id.bottomNavigationView);
         navigationView.setOnItemSelectedListener(selectedListener);
@@ -86,5 +86,32 @@ public class EventsFragmentManagerActivity extends AppCompatActivity implements 
     public void NavigateToCreate() {
         Intent i = new Intent(this, CreateEventActivity.class );
         startActivity(i);
+    }
+
+    private void setUserId() {
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("email", MODE_PRIVATE);
+        String email = sharedPreferences.getString("email", null);
+
+        APIClient apiClient = APIClient.getInstance(getApplicationContext());
+        apiClient.searchUsersByString(email, new OpenEventsCallback<List<UserResponse>>() {
+                    @Override
+                    public void onResponseOpenEvents(Call<List<UserResponse>> call, Response<List<UserResponse>> response) {
+                        if (response.isSuccessful()) {
+                            List<UserResponse> users = response.body();
+                            if (users.size() > 0) {
+                                UserResponse user = users.get(0);
+                                SharedPreferences sp = getApplicationContext().getSharedPreferences("userId", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.putString("userId", user.getIdString());
+                                editor.apply();
+                            }
+                        }
+                    }
+                    @Override
+                    public void onFailureOpenEvents() {
+                        System.out.println("failure");
+                    }
+                }
+        );
     }
 }
