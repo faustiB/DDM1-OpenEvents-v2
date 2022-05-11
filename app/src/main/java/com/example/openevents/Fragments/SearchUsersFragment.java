@@ -90,14 +90,6 @@ public class SearchUsersFragment extends Fragment implements SearchView.OnQueryT
         searchView.setOnQueryTextListener(this);
         executeApiCall("");
 
-        /*view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    UserResponse user = users.get(getAdapterPosition());
-                    Intent intent = new Intent(context, UserActivity.class);
-                    intent.putExtra("user", user);
-                }
-            });*/
 
         return v;
     }
@@ -105,7 +97,10 @@ public class SearchUsersFragment extends Fragment implements SearchView.OnQueryT
     private void setViews(View v) {
         usersAdapter = new UsersAdapter(getContext(), users, user -> {
             Toast.makeText(getContext(), "user clicked: "+user.getName(), Toast.LENGTH_SHORT).show();
-            //TODO: intent to new activity with detail of user.
+
+            Intent intent = new Intent(getContext(), UserActivity.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
         });
         rvUsers = v.findViewById(R.id.rv_users);
         rvUsers.setAdapter(usersAdapter);
