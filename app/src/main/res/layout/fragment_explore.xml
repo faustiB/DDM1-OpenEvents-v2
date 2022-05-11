@@ -3,42 +3,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.MyEventsFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Fragments.MyEventsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/events"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
+            android:layout_marginStart="10dp"
             android:layout_weight="1"
-            android:layout_marginStart="10dp"/>
+            android:text="@string/events"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/bt_create_event"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity=""
-            android:text="@string/plus_sign"
-            android:layout_marginEnd="15dp"/>
+        <SearchView
+            android:id="@+id/search_users_widget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_events"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
-
-
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>

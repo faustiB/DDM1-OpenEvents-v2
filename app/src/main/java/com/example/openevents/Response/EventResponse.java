@@ -46,4 +46,16 @@ public class EventResponse implements Serializable {
     public String getName() {
         return name;
     }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public String getEventStart_date() {
+        return eventStart_date;
+    }
 }

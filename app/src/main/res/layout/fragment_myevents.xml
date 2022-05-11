@@ -21,6 +21,13 @@
             android:textStyle="bold"
             android:layout_weight="1"
             android:layout_marginStart="10dp"/>
+        <Button
+            android:id="@+id/bt_create_event"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity=""
+            android:text="@string/plus_sign"
+            android:layout_marginEnd="15dp"/>
 
     </LinearLayout>
 </LinearLayout>

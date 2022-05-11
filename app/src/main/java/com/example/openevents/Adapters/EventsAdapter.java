@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.bumptech.glide.Glide;
 import com.example.openevents.R;
 import com.example.openevents.Response.EventResponse;
 
@@ -38,8 +39,10 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull EventsAdapter.ViewHolder holder, int position) {
-        //TODO: Añadir los demas elementos al holder
+        Glide.with(context).load(events.get(position).getImage()).into(holder.eventImage);
         holder.title.setText(events.get(position).getName());
+        holder.dateAndHour.setText(events.get(position).getEventStart_date());
+        holder.place.setText(events.get(position).getLocation());
     }
 
     @Override
@@ -56,10 +59,10 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
         public ViewHolder(View view) {
             super(view);
-            eventImage = view.findViewById(R.id.iv_event_item);
-            title = view.findViewById(R.id.tv_event_item_title);
-            dateAndHour = view.findViewById(R.id.tv_event_item_date_and_time);
-            place = view.findViewById(R.id.tv_event_item_place);
+            eventImage = view.findViewById(R.id.event_card_image);
+            title = view.findViewById(R.id.event_card_title);
+            dateAndHour = view.findViewById(R.id.event_card_date_time);
+            place = view.findViewById(R.id.event_card_place);
         }
     }
 }
