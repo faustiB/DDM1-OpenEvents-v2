@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.openevents.API.APIClient;
 import com.example.openevents.API.OpenEventsCallback;
@@ -102,7 +103,10 @@ public class SearchUsersFragment extends Fragment implements SearchView.OnQueryT
     }
 
     private void setViews(View v) {
-        usersAdapter = new UsersAdapter(getContext(), users);
+        usersAdapter = new UsersAdapter(getContext(), users, user -> {
+            Toast.makeText(getContext(), "user clicked: "+user.getName(), Toast.LENGTH_SHORT).show();
+            //TODO: intent to new activity with detail of user.
+        });
         rvUsers = v.findViewById(R.id.rv_users);
         rvUsers.setAdapter(usersAdapter);
         rvUsers.setLayoutManager(new LinearLayoutManager(getContext()));

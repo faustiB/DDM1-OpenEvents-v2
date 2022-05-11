@@ -145,11 +145,9 @@ public class ExploreFragment extends Fragment implements SearchView.OnQueryTextL
 
     private void setViews(View v) {
 
-        eventsAdapter = new EventsAdapter(getContext(), events, new EventsAdapter.OnItemClickListener() {
-            @Override
-            public void onItemclick(EventResponse event) {
-                Toast.makeText(getContext(),"Event clicked "+event.getName(),Toast.LENGTH_SHORT).show();
-            }
+        eventsAdapter = new EventsAdapter(getContext(), events, event -> {
+            Toast.makeText(getContext(),"Event clicked "+event.getName(),Toast.LENGTH_SHORT).show();
+            //TODO: Intent to new activity with event clicked.
         });
 
         RecyclerView rvEvents = v.findViewById(R.id.rv_events);

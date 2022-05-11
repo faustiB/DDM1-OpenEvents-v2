@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.openevents.R;
+import com.example.openevents.Response.EventResponse;
 import com.example.openevents.Response.UserResponse;
 
 import java.util.ArrayList;
@@ -20,10 +21,16 @@ import java.util.ArrayList;
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> {
     Context context;
     ArrayList<UserResponse> users;
+    private OnItemUserClickListener listener;
 
-    public UsersAdapter(Context context, ArrayList<UserResponse> users) {
+    public interface OnItemUserClickListener{
+        void onItemclick(UserResponse user);
+    }
+
+    public UsersAdapter(Context context, ArrayList<UserResponse> users, OnItemUserClickListener listener) {
         this.context = context;
         this.users = users;
+        this.listener = listener;
     }
 
     @NonNull
@@ -38,8 +45,8 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull UsersAdapter.ViewHolder holder, int position) {
-        holder.name.setText(users.get(position).getName() + " " + users.get(position).getLast_name());
-        Glide.with(context).load(users.get(position).getImage()).into(holder.userImage);
+       holder.bind(users.get(position),listener);
+
     }
 
     @Override
@@ -58,5 +65,12 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
             name = view.findViewById(R.id.card_user_name);
         }
 
+        public void bind(UserResponse user, OnItemUserClickListener listener) {
+
+            name.setText(user.getName() + " " + user.getLast_name());
+            Glide.with(context).load(user.getImage()).into(userImage);
+            itemView.setOnClickListener(view -> listener.onItemclick(user));
+
+        }
     }
 }

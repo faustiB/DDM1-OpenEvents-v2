@@ -74,12 +74,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
             title.setText(event.getName());
             dateAndHour.setText(event.getEventStart_date());
             place.setText(event.getLocation());
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.onItemclick(event);
-                }
-            });
+            itemView.setOnClickListener(view -> listener.onItemclick(event));
         }
     }
 }
