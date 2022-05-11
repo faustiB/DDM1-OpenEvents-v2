@@ -21,10 +21,16 @@ import java.util.ArrayList;
 public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder>{
     Context context;
     ArrayList<EventResponse> events;
+    private OnItemClickListener listener;
 
-    public EventsAdapter(Context context, ArrayList<EventResponse> events) {
+    public interface OnItemClickListener{
+        void onItemclick(EventResponse event);
+    }
+
+    public EventsAdapter(Context context, ArrayList<EventResponse> events,OnItemClickListener listener) {
         this.context = context;
         this.events = events;
+        this.listener = listener;
     }
 
     @NonNull
@@ -39,10 +45,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull EventsAdapter.ViewHolder holder, int position) {
-        Glide.with(context).load(events.get(position).getImage()).into(holder.eventImage);
-        holder.title.setText(events.get(position).getName());
-        holder.dateAndHour.setText(events.get(position).getEventStart_date());
-        holder.place.setText(events.get(position).getLocation());
+        holder.bind(events.get(position),listener);
     }
 
     @Override
@@ -63,6 +66,20 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
             title = view.findViewById(R.id.event_card_title);
             dateAndHour = view.findViewById(R.id.event_card_date_time);
             place = view.findViewById(R.id.event_card_place);
+        }
+
+
+        public void bind(EventResponse event, OnItemClickListener listener) {
+            Glide.with(context).load(event.getImage()).into(eventImage);
+            title.setText(event.getName());
+            dateAndHour.setText(event.getEventStart_date());
+            place.setText(event.getLocation());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemclick(event);
+                }
+            });
         }
     }
 }

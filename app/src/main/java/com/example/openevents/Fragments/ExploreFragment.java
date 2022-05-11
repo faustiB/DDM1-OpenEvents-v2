@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.openevents.API.APIClient;
 import com.example.openevents.API.OpenEventsCallback;
@@ -144,7 +145,13 @@ public class ExploreFragment extends Fragment implements SearchView.OnQueryTextL
 
     private void setViews(View v) {
 
-        eventsAdapter = new EventsAdapter(getContext(),events);
+        eventsAdapter = new EventsAdapter(getContext(), events, new EventsAdapter.OnItemClickListener() {
+            @Override
+            public void onItemclick(EventResponse event) {
+                Toast.makeText(getContext(),"Event clicked "+event.getName(),Toast.LENGTH_SHORT).show();
+            }
+        });
+
         RecyclerView rvEvents = v.findViewById(R.id.rv_events);
         rvEvents.setAdapter(eventsAdapter);
         rvEvents.setLayoutManager(new LinearLayoutManager(getContext()));
