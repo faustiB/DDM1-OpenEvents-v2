@@ -4,6 +4,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.metrics.Event;
 
 import androidx.annotation.NonNull;
 
@@ -225,6 +226,19 @@ public class APIClient {
             }
         });
 
+    }
+
+    public void searchEventsByString(String event, OpenEventsCallback<List<EventResponse>> callback) {
+        this.service.searchEventsByString(event).enqueue(new Callback<List<EventResponse>>() {
+            @Override
+            public void onResponse(Call<List<EventResponse>> call, Response<List<EventResponse>> response) {
+                callback.onResponseOpenEvents(call, response);
+            }
+            @Override
+            public void onFailure(Call<List<EventResponse>> call, Throwable t) {
+                System.out.println(t.getMessage());
+            }
+        });
     }
 
 }

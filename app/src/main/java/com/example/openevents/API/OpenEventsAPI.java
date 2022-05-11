@@ -64,4 +64,8 @@ public interface OpenEventsAPI {
     @GET("events")
     Call<List<EventResponse>> getEvents();
 
+    @GET("events/search/")
+    Call<List<EventResponse>> searchEventsByString(@Query("keyword") String event);
+
+
 }
