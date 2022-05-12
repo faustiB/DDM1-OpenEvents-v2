@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,6 +24,7 @@ public class CreateEventActivity extends AppCompatActivity implements AdapterVie
     //TODO: preguntar cuales son las categorías.
     String[] categories = {"Cat1", "Cat2", "Cat3", "Cat4"};
     Spinner spinnerCategories;
+    EditText etName, etImage, etLocation, etDescription, etEventStart_date, etEventEnd_date, etN_participants;
 
     private APIClient apiClient;
 
@@ -31,38 +33,43 @@ public class CreateEventActivity extends AppCompatActivity implements AdapterVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
 
-        configureSpinner();
 
         apiClient = APIClient.getInstance(getApplicationContext());
 
-        EditText etName = findViewById(R.id.et_create_event_name);
-        EditText etTmage = findViewById(R.id.et_create_event_profile_picture);
-        EditText etLocation = findViewById(R.id.et_create_event_location);
-        EditText etDescription = findViewById(R.id.et_create_event_description);
-        EditText etEventStart_date = findViewById(R.id.et_create_event_start_date);
-        EditText etEventEnd_date = findViewById(R.id.et_create_event_end_date);
-        EditText etN_participants = findViewById(R.id.et_create_event_participants);
-        Spinner spType = findViewById(R.id.sp_create_event_categories);
+        etName = findViewById(R.id.et_create_event_name);
+        etImage = findViewById(R.id.et_create_event_profile_picture);
+        etLocation = findViewById(R.id.et_create_event_location);
+        etDescription = findViewById(R.id.et_create_event_description);
+        etEventStart_date = findViewById(R.id.et_create_event_start_date);
+        etEventEnd_date = findViewById(R.id.et_create_event_end_date);
+        etN_participants = findViewById(R.id.et_create_event_participants);
+        spinnerCategories = findViewById(R.id.sp_create_event_categories);
+
+        configureSpinner();
+
+        //TODO:Delete testing data method.
+        setTestingData();
 
         Button btnCreateEvent = findViewById(R.id.bt_create_event);
         btnCreateEvent.setOnClickListener(view -> {
 
             String name = etName.getText().toString();
-            String image = etTmage.getText().toString();
+            String image = etImage.getText().toString();
             String location = etLocation.getText().toString();
             String description = etDescription.getText().toString();
             String startDate = etEventStart_date.getText().toString();
             String endDate = etEventEnd_date.getText().toString();
             int participants = Integer.parseInt(String.valueOf(etN_participants.getText()));
-            String type = spType.getSelectedItem().toString();
+            String type = spinnerCategories.getSelectedItem().toString();
 
 
-
-
-            CreateEventRequest request = new CreateEventRequest(name,image,location,description,startDate,endDate,participants,type);
+            CreateEventRequest request = new CreateEventRequest(name, image, location, description, startDate, endDate, participants, type);
             apiClient.createEvent(request, new OpenEventsCallback<CreateEventResponse>() {
                 @Override
                 public void onResponseOpenEvents(Call<CreateEventResponse> call, Response<CreateEventResponse> response) {
+
+                    Toast.makeText(getApplicationContext(), "Event: " + etName.getText().toString() + " created successfully", Toast.LENGTH_SHORT).show();
+
                     System.out.println(response.body());
                 }
 
@@ -75,6 +82,15 @@ public class CreateEventActivity extends AppCompatActivity implements AdapterVie
 
     }
 
+    private void setTestingData() {
+        etName.setText("test name FBG");
+        etImage.setText("https://i.imgur.com/JprpLyc.jpg");
+        etLocation.setText("Madrid");
+        etDescription.setText("Learn the bla bla bla");
+        etEventStart_date.setText("2022-01-20T12:00:00.000Z");
+        etEventEnd_date.setText("2022-01-20T13:30:00.000Z");
+        etN_participants.setText("128");
+    }
 
 
     @Override

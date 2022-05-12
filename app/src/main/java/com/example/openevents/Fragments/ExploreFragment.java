@@ -40,7 +40,7 @@ public class ExploreFragment extends Fragment implements SearchView.OnQueryTextL
         void NavigateToCreate();
     }
 
-    private Button btnCreateEvent;
+
     private ArrayList<EventResponse> events = new ArrayList<>();
     EventsAdapter eventsAdapter;
     SearchView searchView;

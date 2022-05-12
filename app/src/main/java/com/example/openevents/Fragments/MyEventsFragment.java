@@ -1,9 +1,11 @@
 package com.example.openevents.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
@@ -20,6 +22,8 @@ public class MyEventsFragment extends Fragment {
     public interface EventsFragmentOutput {
         void NavigateToCreate();
     }
+
+    private Button btnCreateEvent;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -66,7 +70,12 @@ public class MyEventsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_myevents, container, false);
-
+        btnCreateEvent = v.findViewById(R.id.bt_create_event);
+        btnCreateEvent.setOnClickListener(view -> {
+            if (getActivity() instanceof EventsFragmentOutput){
+                ((EventsFragmentOutput) getActivity()).NavigateToCreate();
+            }
+        });
         return v;
     }
 }
