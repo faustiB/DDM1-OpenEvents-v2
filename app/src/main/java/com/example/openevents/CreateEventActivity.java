@@ -70,7 +70,6 @@ public class CreateEventActivity extends AppCompatActivity implements AdapterVie
 
                     Toast.makeText(getApplicationContext(), "Event: " + etName.getText().toString() + " created successfully", Toast.LENGTH_SHORT).show();
 
-                    System.out.println(response.body());
                 }
 
                 @Override

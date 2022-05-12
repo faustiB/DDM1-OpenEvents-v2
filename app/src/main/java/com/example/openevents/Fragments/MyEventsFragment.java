@@ -1,6 +1,9 @@
 package com.example.openevents.Fragments;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +11,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.openevents.API.APIClient;
+import com.example.openevents.API.OpenEventsCallback;
+import com.example.openevents.Adapters.EventsAdapter;
+import com.example.openevents.EventActivity;
 import com.example.openevents.R;
+import com.example.openevents.Response.EventResponse;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +41,8 @@ public class MyEventsFragment extends Fragment {
     }
 
     private Button btnCreateEvent;
+    private ArrayList<EventResponse> events = new ArrayList<>();
+    EventsAdapter eventsAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -76,6 +95,59 @@ public class MyEventsFragment extends Fragment {
                 ((EventsFragmentOutput) getActivity()).NavigateToCreate();
             }
         });
+
+
+        setViews(v);
+        int id = getUserId();
+        executeApiCall(id);
+
+
+
+
         return v;
     }
+
+    private void executeApiCall(int id) {
+        //TODO: Change by the correct one. (assistances)
+        /*
+        APIClient apiClient = APIClient.getInstance(getContext());
+        apiClient.getEventsById(id, new OpenEventsCallback<List<EventResponse>>() {
+            @Override
+            public void onResponseOpenEvents(Call<List<EventResponse>> call, Response<List<EventResponse>> response) {
+                if (response.isSuccessful()) {
+                    events.clear();
+                    if (response.body() != null) {
+                        events.addAll(response.body());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailureOpenEvents() {
+
+            }
+        });*/
+    }
+
+    private int getUserId() {
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("userId", MODE_PRIVATE);
+        String id = sharedPreferences.getString("userId", null);
+        return Integer.parseInt(id);
+    }
+
+    private void setViews(View v) {
+
+        eventsAdapter = new EventsAdapter(getContext(), events, event -> {
+            Intent intent = new Intent(getContext(), EventActivity.class);
+            intent.putExtra("event", event);
+            startActivity(intent);
+        });
+
+        RecyclerView rvEvents = v.findViewById(R.id.rv_my_events);
+        rvEvents.setAdapter(eventsAdapter);
+        rvEvents.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+    }
+
 }

@@ -36,11 +36,6 @@ import retrofit2.Response;
 public class ExploreFragment extends Fragment implements SearchView.OnQueryTextListener {
 
 
-    public interface EventsFragmentOutput {
-        void NavigateToCreate();
-    }
-
-
     private ArrayList<EventResponse> events = new ArrayList<>();
     EventsAdapter eventsAdapter;
     SearchView searchView;

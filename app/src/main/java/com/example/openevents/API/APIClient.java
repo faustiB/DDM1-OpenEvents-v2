@@ -240,5 +240,21 @@ public class APIClient {
             }
         });
     }
+    //TODO: Change by the correct one. (assistances)
+    /*
+    public void getEventsById(int id, OpenEventsCallback<List<EventResponse>> callback){
+        this.service.getEventsById(id).enqueue(new Callback<List<EventResponse>>() {
+            @Override
+            public void onResponse(Call<List<EventResponse>> call, Response<List<EventResponse>> response) {
+                //TODO: Check why response is empty.
+                callback.onResponseOpenEvents(call, response);
+            }
+
+            @Override
+            public void onFailure(Call<List<EventResponse>> call, Throwable t) {
+                callback.onFailureOpenEvents();
+            }
+        });
+    }*/
 
 }
