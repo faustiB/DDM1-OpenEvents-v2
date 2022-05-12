@@ -42,7 +42,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="30dp"
                     android:gravity="start"
-                    android:text="James"
+                    android:text="@string/james"
                     android:textColor="@color/black"
                     android:textSize="40sp"
                     android:textStyle="bold" />
@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:gravity="left"
-                    android:text="Cardenas"
+                    android:text="@string/cardenas"
                     android:textColor="@color/black"
                     android:textSize="40sp"
                     android:textStyle="bold" />
@@ -88,7 +88,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Statistics:"
+                android:text="@string/statistics"
                 android:textSize="20sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -96,7 +96,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Average Score:"
+                android:text="@string/average_score"
                 android:textSize="15sp"
                 android:textColor="@color/black"
                 android:textStyle="normal"
@@ -107,12 +107,12 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="0%"
+                android:text="@string/_0"
                 android:textColor="@color/black" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Number of comments:"
+                android:text="@string/number_of_comments"
                 android:textSize="15sp"
                 android:textColor="@color/black"
                 android:textStyle="normal"
@@ -122,12 +122,12 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="0"
+                android:text="@string/_0p"
                 android:textColor="@color/black" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Percentage of comments:"
+                android:text="@string/percentage_of_comments"
                 android:textSize="15sp"
                 android:textColor="@color/black"
                 android:textStyle="normal"
@@ -137,7 +137,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="0%"
+                android:text="@string/_0"
                 android:textColor="@color/black" />
 
         </LinearLayout>
@@ -153,8 +153,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:layout_gravity="bottom|center"
-            android:contentDescription="Edit user profile button"
-            android:text="Edit user profile"
+            android:contentDescription="@string/edit_user_profile_button"
+            android:text="@string/edit_user_profile"
             android:textColor="@color/white"
             app:backgroundTint="@color/primary"/>
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -163,8 +163,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
             android:gravity="center"
-            android:contentDescription="Logout button"
-            android:text="Logout"
+            android:contentDescription="@string/logout_button"
+            android:text="@string/logout"
             app:icon="@drawable/ic_baseline_logout_24"
             app:iconTint="@color/white"
             style="@style/TextAppearance.Material3.TitleMedium"

@@ -49,7 +49,10 @@ public class UserActivity extends AppCompatActivity {
         user_name.setText(user.getName());
         last_name.setText(user.getLast_name());
         email.setText(user.getEmail());
-        Glide.with(getApplicationContext()).load(user.getImage()).into(imageView);
+        Glide.with(getApplicationContext())
+                .load(user.getImage())
+                .placeholder(R.drawable.profile)
+                .into(imageView);
     }
 
     private void setStatisticsData(UserStatisticsResponse statistics) {

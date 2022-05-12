@@ -44,6 +44,7 @@ public class ProfileFragment extends Fragment {
     private APIClient apiClient;
     ImageView imageView;
     TextView user_name, last_name, email, avgScore, numComments, percentageComments;
+    ExtendedFloatingActionButton fab, logout;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -90,22 +91,6 @@ public class ProfileFragment extends Fragment {
         setStatisticsData(new UserStatisticsResponse(1, 1, 1));
         executeApiCall();
 
-        ExtendedFloatingActionButton fab = v.findViewById(R.id.edit_user_profile);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                editProfile();
-            }
-        });
-
-        ExtendedFloatingActionButton logout = v.findViewById(R.id.logout);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                logout();
-            }
-        });
-
         return v;
     }
 
@@ -117,6 +102,22 @@ public class ProfileFragment extends Fragment {
         avgScore = v.findViewById(R.id.average_score);
         numComments = v.findViewById(R.id.number_user_comments);
         percentageComments = v.findViewById(R.id.percentage_of_comments);
+
+        fab = v.findViewById(R.id.edit_user_profile);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editProfile();
+            }
+        });
+
+        logout = v.findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logout();
+            }
+        });
     }
 
     private void setUserData(UserResponse user) {

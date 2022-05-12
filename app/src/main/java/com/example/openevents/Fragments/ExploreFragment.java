@@ -1,5 +1,6 @@
 package com.example.openevents.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,8 +17,10 @@ import android.widget.Toast;
 import com.example.openevents.API.APIClient;
 import com.example.openevents.API.OpenEventsCallback;
 import com.example.openevents.Adapters.EventsAdapter;
+import com.example.openevents.EventActivity;
 import com.example.openevents.R;
 import com.example.openevents.Response.EventResponse;
+import com.example.openevents.UserActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,41 +91,14 @@ public class ExploreFragment extends Fragment implements SearchView.OnQueryTextL
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_explore, container, false);
 
-
-
         setViews(v);
         searchView.setOnQueryTextListener(this);
         executeApiCall("");
 
-
-
-
-
-
-        /*apiClient.getEvents(new OpenEventsCallback<List<EventResponse>>() {
-            @Override
-            public void onResponseOpenEvents(Call<List<EventResponse>> call, Response<List<EventResponse>> response) {
-                events.clear();
-                if (response.body() != null) {
-                    events.addAll(response.body());
-                    eventsAdapter.notifyDataSetChanged();
-                }
-
-            }
-
-            @Override
-            public void onFailureOpenEvents() {
-                System.out.println("TEST CALL RESPONSE FAIL");
-            }
-        });*/
-
-
-
-
         return v;
     }
 
-    private void executeApiCall(String event){
+    private void executeApiCall(String event) {
         APIClient apiClient = APIClient.getInstance(getContext());
         apiClient.searchEventsByString(event, new OpenEventsCallback<List<EventResponse>>() {
             @Override
@@ -146,8 +122,9 @@ public class ExploreFragment extends Fragment implements SearchView.OnQueryTextL
     private void setViews(View v) {
 
         eventsAdapter = new EventsAdapter(getContext(), events, event -> {
-            Toast.makeText(getContext(),"Event clicked "+event.getName(),Toast.LENGTH_SHORT).show();
-            //TODO: Intent to new activity with event clicked.
+            Intent intent = new Intent(getContext(), EventActivity.class);
+            intent.putExtra("event", event);
+            startActivity(intent);
         });
 
         RecyclerView rvEvents = v.findViewById(R.id.rv_events);
@@ -168,8 +145,6 @@ public class ExploreFragment extends Fragment implements SearchView.OnQueryTextL
         executeApiCall(s);
         return false;
     }
-
-
 
 
 }

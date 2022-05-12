@@ -39,9 +39,11 @@
     <string name="your_location">Your Location</string>
     <string name="category">Category</string>
     <string name="participants">Participants</string>
-    <string name="start_date">Start date</string>
+    <string name="start_date">Start date: </string>
+    <string name="starttime">Start: </string>
     <string name="start_date_of_event">Start date of event</string>
     <string name="end_date">End date</string>
+    <string name="end">End: </string>
     <string name="end_date_of_event">End date of event</string>
     <string name="name_of_event">Name of Event</string>
     <string name="name">Name</string>
@@ -50,4 +52,19 @@
     <string name="user_name">User name</string>
     <string name="place">Place</string>
     <string name="date_time">Date and Time</string>
+    <string name="event_image">Image of the event</string>
+    <string name="event_description">Description of the event</string>
+    <string name="edit_user_profile">Edit user profile</string>
+    <string name="edit_user_profile_button">Edit user profile button</string>
+    <string name="logout_button">Logout button</string>
+    <string name="logout">Logout</string>
+    <string name="_0">0%</string>
+    <string name="percentage_of_comments">Percentage of comments:</string>
+    <string name="_0p">0</string>
+    <string name="number_of_comments">Number of comments:</string>
+    <string name="average_score">Average Score:</string>
+    <string name="statistics">Statistics:</string>
+    <string name="cardenas">Cardenas</string>
+    <string name="james">James</string>
+    <string name="attend">Attend</string>
 </resources>

@@ -96,8 +96,6 @@ public class SearchUsersFragment extends Fragment implements SearchView.OnQueryT
 
     private void setViews(View v) {
         usersAdapter = new UsersAdapter(getContext(), users, user -> {
-            Toast.makeText(getContext(), "user clicked: "+user.getName(), Toast.LENGTH_SHORT).show();
-
             Intent intent = new Intent(getContext(), UserActivity.class);
             intent.putExtra("user", user);
             startActivity(intent);
