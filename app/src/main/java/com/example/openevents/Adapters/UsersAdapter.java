@@ -66,11 +66,12 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
         }
 
         public void bind(UserResponse user, OnItemUserClickListener listener) {
-
             name.setText(user.getName() + " " + user.getLast_name());
-            Glide.with(context).load(user.getImage()).into(userImage);
+            Glide.with(context)
+                    .load(user.getImage())
+                    .placeholder(R.drawable.profile)
+                    .into(userImage);
             itemView.setOnClickListener(view -> listener.onItemclick(user));
-
         }
     }
 }

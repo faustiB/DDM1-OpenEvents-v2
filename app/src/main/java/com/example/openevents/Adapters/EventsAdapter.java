@@ -70,7 +70,10 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
 
         public void bind(EventResponse event, OnItemClickListener listener) {
-            Glide.with(context).load(event.getImage()).into(eventImage);
+            Glide.with(context)
+                    .load(event.getImage())
+                    .placeholder(R.drawable.event_image)
+                    .into(eventImage);
             title.setText(event.getName());
             dateAndHour.setText(event.getEventStart_date());
             place.setText(event.getLocation());
