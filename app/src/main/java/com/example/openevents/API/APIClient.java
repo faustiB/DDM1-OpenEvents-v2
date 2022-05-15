@@ -4,7 +4,6 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.media.metrics.Event;
 
 import androidx.annotation.NonNull;
 
@@ -32,7 +31,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Path;
 
 
 public class APIClient {
@@ -59,7 +57,7 @@ public class APIClient {
                 SharedPreferences sharedPreferences = applicationContext.getSharedPreferences("token", MODE_PRIVATE);
                 accessToken = sharedPreferences.getString("token", null);
 
-                if(accessToken != null) {
+                if (accessToken != null) {
                     Request newRequest = chain.request().newBuilder()
                             .addHeader("Authorization", "Bearer " + accessToken)
                             .build();
@@ -165,6 +163,7 @@ public class APIClient {
             public void onResponse(Call<List<UserResponse>> call, Response<List<UserResponse>> response) {
                 callback.onResponseOpenEvents(call, response);
             }
+
             @Override
             public void onFailure(Call<List<UserResponse>> call, Throwable t) {
                 System.out.println(t.getMessage());
@@ -201,11 +200,11 @@ public class APIClient {
         });
     }
 
-    public void createEvent(CreateEventRequest createEventRequest, OpenEventsCallback<CreateEventResponse> callback){
+    public void createEvent(CreateEventRequest createEventRequest, OpenEventsCallback<CreateEventResponse> callback) {
         this.service.createEvent(createEventRequest).enqueue(new Callback<CreateEventResponse>() {
             @Override
             public void onResponse(Call<CreateEventResponse> call, Response<CreateEventResponse> response) {
-                callback.onResponseOpenEvents(call,response);
+                callback.onResponseOpenEvents(call, response);
             }
 
             @Override
@@ -215,11 +214,11 @@ public class APIClient {
         });
     }
 
-    public void getEvents(OpenEventsCallback<List<EventResponse>> callback){
+    public void getEvents(OpenEventsCallback<List<EventResponse>> callback) {
         this.service.getEvents().enqueue(new Callback<List<EventResponse>>() {
             @Override
             public void onResponse(Call<List<EventResponse>> call, Response<List<EventResponse>> response) {
-                callback.onResponseOpenEvents(call,response);
+                callback.onResponseOpenEvents(call, response);
             }
 
             @Override
@@ -236,6 +235,7 @@ public class APIClient {
             public void onResponse(Call<List<EventResponse>> call, Response<List<EventResponse>> response) {
                 callback.onResponseOpenEvents(call, response);
             }
+
             @Override
             public void onFailure(Call<List<EventResponse>> call, Throwable t) {
                 System.out.println(t.getMessage());
@@ -260,7 +260,7 @@ public class APIClient {
     }*/
 
 
-    public void assistEvent(int id, OpenEventsCallback callback){
+    public void assistEvent(int id, OpenEventsCallback callback) {
         this.service.assistEvent(id).enqueue(new Callback<AssistEventResponse>() {
             @Override
             public void onResponse(Call<AssistEventResponse> call, Response<AssistEventResponse> response) {
@@ -269,6 +269,20 @@ public class APIClient {
 
             @Override
             public void onFailure(Call<AssistEventResponse> call, Throwable t) {
+                callback.onFailureOpenEvents();
+            }
+        });
+    }
+
+    public void getUserAssistances(int id, OpenEventsCallback callback) {
+        this.service.getUserAssistances(id).enqueue(new Callback<List<EventResponse>>() {
+            @Override
+            public void onResponse(Call<List<EventResponse>> call, Response<List<EventResponse>> response) {
+                callback.onResponseOpenEvents(call, response);
+            }
+
+            @Override
+            public void onFailure(Call<List<EventResponse>> call, Throwable t) {
                 callback.onFailureOpenEvents();
             }
         });

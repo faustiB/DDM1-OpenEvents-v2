@@ -22,6 +22,7 @@ import com.example.openevents.R;
 import com.example.openevents.Response.EventResponse;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -108,16 +109,16 @@ public class MyEventsFragment extends Fragment {
     }
 
     private void executeApiCall(int id) {
-        //TODO: Change by the correct one. (assistances)
-        /*
+
         APIClient apiClient = APIClient.getInstance(getContext());
-        apiClient.getEventsById(id, new OpenEventsCallback<List<EventResponse>>() {
+        apiClient.getUserAssistances(id, new OpenEventsCallback() {
             @Override
-            public void onResponseOpenEvents(Call<List<EventResponse>> call, Response<List<EventResponse>> response) {
+            public void onResponseOpenEvents(Call call, Response response) {
                 if (response.isSuccessful()) {
                     events.clear();
                     if (response.body() != null) {
-                        events.addAll(response.body());
+                        events.addAll((Collection<? extends EventResponse>) response.body());
+                        eventsAdapter.notifyDataSetChanged();
                     }
                 }
             }
@@ -126,7 +127,9 @@ public class MyEventsFragment extends Fragment {
             public void onFailureOpenEvents() {
 
             }
-        });*/
+        });
+
+
     }
 
     private int getUserId() {

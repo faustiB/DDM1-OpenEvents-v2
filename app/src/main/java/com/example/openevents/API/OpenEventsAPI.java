@@ -50,6 +50,9 @@ public interface OpenEventsAPI {
     @GET("users/search/")
     Call<List<UserResponse>> searchUsersByString(@Query("s") String name);
 
+    @GET("users/{id}/assistances")
+    Call<List<EventResponse>> getUserAssistances(@Path("id") int id);
+
     @GET("users/{id}/statistics")
     Call<UserStatisticsResponse> getUserStatistics(@Path("id") int id);
 

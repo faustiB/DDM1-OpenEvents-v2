@@ -46,7 +46,6 @@ public class EventActivity extends AppCompatActivity {
         attendEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: add attend event logic
 
                 APIClient apiClient = APIClient.getInstance(getApplicationContext());
                 int id = event.getId();
