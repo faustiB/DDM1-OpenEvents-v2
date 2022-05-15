@@ -12,6 +12,7 @@ import com.example.openevents.Request.CreateEventRequest;
 import com.example.openevents.Request.EditUserRequest;
 import com.example.openevents.Request.LoginRequest;
 import com.example.openevents.Request.RegisterRequest;
+import com.example.openevents.Response.AssistEventResponse;
 import com.example.openevents.Response.CreateEventResponse;
 import com.example.openevents.Response.EventResponse;
 import com.example.openevents.Response.LoginResponse;
@@ -31,6 +32,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Path;
 
 
 public class APIClient {
@@ -256,5 +258,21 @@ public class APIClient {
             }
         });
     }*/
+
+
+    public void assistEvent(int id, OpenEventsCallback callback){
+        this.service.assistEvent(id).enqueue(new Callback<AssistEventResponse>() {
+            @Override
+            public void onResponse(Call<AssistEventResponse> call, Response<AssistEventResponse> response) {
+                callback.onResponseOpenEvents(call, response);
+            }
+
+            @Override
+            public void onFailure(Call<AssistEventResponse> call, Throwable t) {
+                callback.onFailureOpenEvents();
+            }
+        });
+
+    }
 
 }

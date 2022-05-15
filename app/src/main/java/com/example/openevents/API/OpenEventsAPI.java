@@ -4,6 +4,7 @@ import com.example.openevents.Request.CreateEventRequest;
 import com.example.openevents.Request.EditUserRequest;
 import com.example.openevents.Request.LoginRequest;
 import com.example.openevents.Request.RegisterRequest;
+import com.example.openevents.Response.AssistEventResponse;
 import com.example.openevents.Response.CreateEventResponse;
 import com.example.openevents.Response.EventResponse;
 import com.example.openevents.Response.LoginResponse;
@@ -66,6 +67,9 @@ public interface OpenEventsAPI {
 
     @GET("events/search/")
     Call<List<EventResponse>> searchEventsByString(@Query("keyword") String event);
+
+    @POST("events/{id}/assistances")
+    Call<AssistEventResponse> assistEvent(@Path("id") int id);
 
     //TODO: Change by the correct one. (assistances)
     /*@GET("events/{id}")

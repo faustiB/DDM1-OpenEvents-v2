@@ -86,4 +86,8 @@ public class EventResponse implements Serializable {
     public String getType() {
         return type;
     }
+
+    public int getId() {
+        return id;
+    }
 }
