@@ -17,6 +17,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -74,7 +75,6 @@ public interface OpenEventsAPI {
     @POST("events/{id}/assistances")
     Call<AssistEventResponse> assistEvent(@Path("id") int id);
 
-    //TODO: Change by the correct one. (assistances)
-    /*@GET("events/{id}")
-    Call<List<EventResponse>> getEventsById(@Path("id") int id);*/
+    @DELETE("events/{id}/assistances")
+    Call<AssistEventResponse> notAssistEvent(@Path("id") int id);
 }

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.OpenEvents"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".MyEventActivity"
+            android:exported="false" />
+        <activity
             android:name=".EventActivity"
             android:exported="false" />
         <activity

@@ -274,6 +274,20 @@ public class APIClient {
         });
     }
 
+    public void notAssistEvent(int id, OpenEventsCallback callback) {
+        this.service.notAssistEvent(id).enqueue(new Callback<AssistEventResponse>() {
+            @Override
+            public void onResponse(Call<AssistEventResponse> call, Response<AssistEventResponse> response) {
+                callback.onResponseOpenEvents(call, response);
+            }
+
+            @Override
+            public void onFailure(Call<AssistEventResponse> call, Throwable t) {
+                callback.onFailureOpenEvents();
+            }
+        });
+    }
+
     public void getUserAssistances(int id, OpenEventsCallback callback) {
         this.service.getUserAssistances(id).enqueue(new Callback<List<EventResponse>>() {
             @Override

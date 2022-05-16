@@ -18,6 +18,7 @@ import com.example.openevents.API.APIClient;
 import com.example.openevents.API.OpenEventsCallback;
 import com.example.openevents.Adapters.EventsAdapter;
 import com.example.openevents.EventActivity;
+import com.example.openevents.MyEventActivity;
 import com.example.openevents.R;
 import com.example.openevents.Response.EventResponse;
 
@@ -92,24 +93,25 @@ public class MyEventsFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_myevents, container, false);
         btnCreateEvent = v.findViewById(R.id.bt_create_event);
         btnCreateEvent.setOnClickListener(view -> {
-            if (getActivity() instanceof EventsFragmentOutput){
+            if (getActivity() instanceof EventsFragmentOutput) {
                 ((EventsFragmentOutput) getActivity()).NavigateToCreate();
             }
         });
-
 
         setViews(v);
         int id = getUserId();
         executeApiCall(id);
 
-
-
-
         return v;
     }
 
-    private void executeApiCall(int id) {
+    @Override
+    public void onResume() {
+        super.onResume();
+        executeApiCall(getUserId());
+    }
 
+    private void executeApiCall(int id) {
         APIClient apiClient = APIClient.getInstance(getContext());
         apiClient.getUserAssistances(id, new OpenEventsCallback() {
             @Override
@@ -141,7 +143,7 @@ public class MyEventsFragment extends Fragment {
     private void setViews(View v) {
 
         eventsAdapter = new EventsAdapter(getContext(), events, event -> {
-            Intent intent = new Intent(getContext(), EventActivity.class);
+            Intent intent = new Intent(getContext(), MyEventActivity.class);
             intent.putExtra("event", event);
             startActivity(intent);
         });
@@ -149,8 +151,6 @@ public class MyEventsFragment extends Fragment {
         RecyclerView rvEvents = v.findViewById(R.id.rv_my_events);
         rvEvents.setAdapter(eventsAdapter);
         rvEvents.setLayoutManager(new LinearLayoutManager(getContext()));
-
-
     }
 
 }

@@ -67,4 +67,5 @@
     <string name="cardenas">Cardenas</string>
     <string name="james">James</string>
     <string name="attend">Attend</string>
+    <string name="unattend">Unattend</string>
 </resources>
