@@ -8,6 +8,7 @@ import com.example.openevents.Response.AssistEventResponse;
 import com.example.openevents.Response.CreateEventResponse;
 import com.example.openevents.Response.EventResponse;
 import com.example.openevents.Response.LoginResponse;
+import com.example.openevents.Response.MessageResponse;
 import com.example.openevents.Response.RegisterResponse;
 import com.example.openevents.Response.UserResponse;
 import com.example.openevents.Response.UserStatisticsResponse;
@@ -71,6 +72,9 @@ public interface OpenEventsAPI {
 
     @GET("events/search/")
     Call<List<EventResponse>> searchEventsByString(@Query("keyword") String event);
+
+    @DELETE("events/{id}/")
+    Call<MessageResponse> deleteEvent(@Path("id") int id);
 
     @POST("events/{id}/assistances")
     Call<AssistEventResponse> assistEvent(@Path("id") int id);

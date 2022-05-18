@@ -1,6 +1,9 @@
 package com.example.openevents.Fragments;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.openevents.API.APIClient;
 import com.example.openevents.API.OpenEventsCallback;
 import com.example.openevents.Activities.EventActivity;
+import com.example.openevents.Activities.OwnEventActivity;
 import com.example.openevents.Adapters.EventsAdapter;
 import com.example.openevents.R;
 import com.example.openevents.Response.EventResponse;
@@ -111,9 +115,14 @@ public class ExploreFragment extends Fragment implements SearchView.OnQueryTextL
     }
 
     private void setViews(View v) {
-
         eventsAdapter = new EventsAdapter(getContext(), events, event -> {
-            Intent intent = new Intent(getContext(), EventActivity.class);
+            Intent intent;
+            System.out.println(getUserId()+" "+event.getOwner_id());
+            if (getUserId() == event.getOwner_id()) {
+                intent = new Intent(getContext(), OwnEventActivity.class);
+            } else {
+                intent = new Intent(getContext(), EventActivity.class);
+            }
             intent.putExtra("event", event);
             startActivity(intent);
         });
@@ -137,5 +146,9 @@ public class ExploreFragment extends Fragment implements SearchView.OnQueryTextL
         return false;
     }
 
-
+    private int getUserId() {
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("userId", MODE_PRIVATE);
+        String id = sharedPreferences.getString("userId", null);
+        return Integer.parseInt(id);
+    }
 }

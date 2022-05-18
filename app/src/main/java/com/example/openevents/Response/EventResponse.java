@@ -70,4 +70,8 @@ public class EventResponse implements Serializable {
     public int getId() {
         return id;
     }
+
+    public int getOwner_id() {
+        return owner_id;
+    }
 }

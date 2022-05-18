@@ -66,4 +66,6 @@
     <string name="james">James</string>
     <string name="attend">Attend</string>
     <string name="unattend">Unattend</string>
+    <string name="edit_event">Edit Event</string>
+    <string name="delete_event">Delete Event</string>
 </resources>

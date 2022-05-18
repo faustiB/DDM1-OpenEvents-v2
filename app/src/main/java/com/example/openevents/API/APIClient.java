@@ -15,6 +15,7 @@ import com.example.openevents.Response.AssistEventResponse;
 import com.example.openevents.Response.CreateEventResponse;
 import com.example.openevents.Response.EventResponse;
 import com.example.openevents.Response.LoginResponse;
+import com.example.openevents.Response.MessageResponse;
 import com.example.openevents.Response.RegisterResponse;
 import com.example.openevents.Response.UserResponse;
 import com.example.openevents.Response.UserStatisticsResponse;
@@ -238,6 +239,20 @@ public class APIClient {
             @Override
             public void onFailure(Call<List<EventResponse>> call, Throwable t) {
                 System.out.println(t.getMessage());
+            }
+        });
+    }
+
+    public void deleteEvent(int id, OpenEventsCallback callback) {
+        this.service.deleteEvent(id).enqueue(new Callback<MessageResponse>() {
+            @Override
+            public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+                callback.onResponseOpenEvents(call, response);
+            }
+
+            @Override
+            public void onFailure(Call<MessageResponse> call, Throwable t) {
+                callback.onFailureOpenEvents();
             }
         });
     }
