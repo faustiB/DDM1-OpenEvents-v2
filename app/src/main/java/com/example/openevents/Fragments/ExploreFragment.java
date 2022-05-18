@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.SearchView;
 
 import androidx.fragment.app.Fragment;
@@ -26,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
@@ -34,11 +37,10 @@ import retrofit2.Response;
  * create an instance of this fragment.
  */
 public class ExploreFragment extends Fragment implements SearchView.OnQueryTextListener {
-
-
     private final ArrayList<EventResponse> events = new ArrayList<>();
     EventsAdapter eventsAdapter;
     SearchView searchView;
+    CheckBox bestButton;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -88,36 +90,14 @@ public class ExploreFragment extends Fragment implements SearchView.OnQueryTextL
 
         setViews(v);
         searchView.setOnQueryTextListener(this);
-        executeApiCall("");
+        executeApiCall("", false);
 
         return v;
-    }
-
-    private void executeApiCall(String event) {
-        APIClient apiClient = APIClient.getInstance(getContext());
-        apiClient.searchEventsByString(event, new OpenEventsCallback<List<EventResponse>>() {
-            @Override
-            public void onResponseOpenEvents(Call<List<EventResponse>> call, Response<List<EventResponse>> response) {
-                if (response.isSuccessful()) {
-                    events.clear();
-                    if (response.body() != null) {
-                        events.addAll(response.body());
-                        eventsAdapter.notifyDataSetChanged();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailureOpenEvents() {
-
-            }
-        });
     }
 
     private void setViews(View v) {
         eventsAdapter = new EventsAdapter(getContext(), events, event -> {
             Intent intent;
-            System.out.println(getUserId()+" "+event.getOwner_id());
             if (getUserId() == event.getOwner_id()) {
                 intent = new Intent(getContext(), OwnEventActivity.class);
             } else {
@@ -132,7 +112,22 @@ public class ExploreFragment extends Fragment implements SearchView.OnQueryTextL
         rvEvents.setLayoutManager(new LinearLayoutManager(getContext()));
 
         searchView = v.findViewById(R.id.search_users_widget_events);
+        searchView.setMaxWidth(Integer.MAX_VALUE);
 
+        bestButton = v.findViewById(R.id.best_star_icon);
+        bestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                executeApiCall("", true);
+            }
+        });
+
+        bestButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                executeApiCall("", b);
+            }
+        });
     }
 
     @Override
@@ -142,7 +137,7 @@ public class ExploreFragment extends Fragment implements SearchView.OnQueryTextL
 
     @Override
     public boolean onQueryTextChange(String s) {
-        executeApiCall(s);
+        executeApiCall(s, false);
         return false;
     }
 
@@ -151,4 +146,47 @@ public class ExploreFragment extends Fragment implements SearchView.OnQueryTextL
         String id = sharedPreferences.getString("userId", null);
         return Integer.parseInt(id);
     }
+
+    private void executeApiCall(String event, Boolean best) {
+        APIClient apiClient = APIClient.getInstance(getContext());
+
+        if (best) {
+            apiClient.getBestEvents(new OpenEventsCallback<List<EventResponse>>() {
+                @Override
+                public void onResponseOpenEvents(Call<List<EventResponse>> call, Response<List<EventResponse>> response) {
+                    if (response.isSuccessful()) {
+                        events.clear();
+                        if (response.body() != null) {
+                            events.addAll(response.body());
+                            eventsAdapter.notifyDataSetChanged();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailureOpenEvents() {
+
+                }
+            });
+        } else {
+            apiClient.searchEventsByString(event, new OpenEventsCallback<List<EventResponse>>() {
+                @Override
+                public void onResponseOpenEvents(Call<List<EventResponse>> call, Response<List<EventResponse>> response) {
+                    if (response.isSuccessful()) {
+                        events.clear();
+                        if (response.body() != null) {
+                            events.addAll(response.body());
+                            eventsAdapter.notifyDataSetChanged();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailureOpenEvents() {
+
+                }
+            });
+        }
+    }
+
 }

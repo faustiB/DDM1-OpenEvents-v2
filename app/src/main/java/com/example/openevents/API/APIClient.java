@@ -229,6 +229,21 @@ public class APIClient {
 
     }
 
+    public void getBestEvents(OpenEventsCallback<List<EventResponse>> callback) {
+        this.service.getBestEvents().enqueue(new Callback<List<EventResponse>>() {
+            @Override
+            public void onResponse(Call<List<EventResponse>> call, Response<List<EventResponse>> response) {
+                callback.onResponseOpenEvents(call, response);
+            }
+
+            @Override
+            public void onFailure(Call<List<EventResponse>> call, Throwable t) {
+                callback.onFailureOpenEvents();
+            }
+        });
+
+    }
+
     public void searchEventsByString(String event, OpenEventsCallback<List<EventResponse>> callback) {
         this.service.searchEventsByString(event).enqueue(new Callback<List<EventResponse>>() {
             @Override
