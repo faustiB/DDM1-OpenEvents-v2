@@ -80,7 +80,6 @@ public class MyEventActivity extends AppCompatActivity {
         eventName.setText(event.getName());
         eventDescription.setText(event.getDescription());
 
-        //TODO: apply format to date
         eventStart.setText(event.getEventStart_date());
         eventEnd.setText(event.getEventEnd_date());
 

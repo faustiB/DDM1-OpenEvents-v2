@@ -6,11 +6,11 @@ import java.io.Serializable;
 
 public class UserStatisticsResponse implements Serializable {
     @SerializedName("avg_score")
-    private float avg_score;
+    private final float avg_score;
     @SerializedName("num_comments")
-    private int num_comments;
+    private final int num_comments;
     @SerializedName("percentage_commenters_below")
-    private float percentage_commenters_below;
+    private final float percentage_commenters_below;
 
     public UserStatisticsResponse(float avg_score, int num_coments, float percentage_commenters_below) {
         this.avg_score = avg_score;

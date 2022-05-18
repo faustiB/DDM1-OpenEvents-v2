@@ -32,7 +32,7 @@ import retrofit2.Response;
  */
 public class SearchUsersFragment extends Fragment implements SearchView.OnQueryTextListener {
 
-    private ArrayList<UserResponse> users = new ArrayList<>();
+    private final ArrayList<UserResponse> users = new ArrayList<>();
     UsersAdapter usersAdapter;
     RecyclerView rvUsers;
     SearchView searchView;

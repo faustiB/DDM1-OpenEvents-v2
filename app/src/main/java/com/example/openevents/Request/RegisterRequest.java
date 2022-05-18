@@ -2,11 +2,11 @@ package com.example.openevents.Request;
 
 public class RegisterRequest {
 
-    private String name;
-    private String last_name;
-    private String email;
-    private String password;
-    private String image;
+    private final String name;
+    private final String last_name;
+    private final String email;
+    private final String password;
+    private final String image;
 
     public RegisterRequest(String name, String last_name, String email, String password, String image) {
         this.name = name;

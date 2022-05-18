@@ -40,7 +40,7 @@ public class MyEventsFragment extends Fragment {
     }
 
     private Button btnCreateEvent;
-    private ArrayList<EventResponse> events = new ArrayList<>();
+    private final ArrayList<EventResponse> events = new ArrayList<>();
     EventsAdapter eventsAdapter;
 
     // TODO: Rename parameter arguments, choose names that match

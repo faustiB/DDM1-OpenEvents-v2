@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder>{
     Context context;
     ArrayList<EventResponse> events;
-    private OnItemClickListener listener;
+    private final OnItemClickListener listener;
 
     public interface OnItemClickListener{
         void onItemclick(EventResponse event);

@@ -46,7 +46,7 @@ public class EventsFragmentManagerActivity extends AppCompatActivity implements 
     }
 
     @SuppressLint("NonConstantResourceId")
-    private NavigationBarView.OnItemSelectedListener selectedListener = menuItem -> {
+    private final NavigationBarView.OnItemSelectedListener selectedListener = menuItem -> {
         switch (menuItem.getItemId()) {
             case R.id.explore_events:
                 ExploreFragment exploreFragment = new ExploreFragment();

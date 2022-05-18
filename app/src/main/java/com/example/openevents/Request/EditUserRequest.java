@@ -1,11 +1,11 @@
 package com.example.openevents.Request;
 
 public class EditUserRequest {
-    private String name;
-    private String last_name;
-    private String email;
+    private final String name;
+    private final String last_name;
+    private final String email;
     private String password;
-    private String image;
+    private final String image;
 
     public EditUserRequest(String name, String last_name, String email, String password, String image) {
         this.name = name;

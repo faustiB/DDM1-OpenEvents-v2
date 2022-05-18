@@ -2,14 +2,14 @@ package com.example.openevents.Request;
 
 public class CreateEventRequest {
 
-    private String name;
-    private String image;
-    private String location;
-    private String description;
-    private String eventStart_date;
-    private String eventEnd_date;
-    private int n_participators;
-    private String type;
+    private final String name;
+    private final String image;
+    private final String location;
+    private final String description;
+    private final String eventStart_date;
+    private final String eventEnd_date;
+    private final int n_participators;
+    private final String type;
 
     public CreateEventRequest(String name, String image, String location, String description, String eventStart_date, String eventEnd_date, int n_participators, String type) {
         this.name = name;

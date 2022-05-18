@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> {
     Context context;
     ArrayList<UserResponse> users;
-    private OnItemUserClickListener listener;
+    private final OnItemUserClickListener listener;
 
     public interface OnItemUserClickListener{
         void onItemclick(UserResponse user);

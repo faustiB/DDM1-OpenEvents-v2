@@ -37,8 +37,8 @@ public class APIClient {
 
     private static APIClient shared;
 
-    private Retrofit retrofit;
-    private OpenEventsAPI service;
+    private final Retrofit retrofit;
+    private final OpenEventsAPI service;
 
     private String accessToken;
 
@@ -129,7 +129,6 @@ public class APIClient {
         this.service.getUsers().enqueue(new Callback<List<UsersResponse>>() {
             @Override
             public void onResponse(Call<List<UsersResponse>> call, Response<List<UsersResponse>> response) {
-                //TODO: the users are in the response.body() and in there a list could be created
                 callback.onResponseOpenEvents(call, response);
             }
 
@@ -242,23 +241,6 @@ public class APIClient {
             }
         });
     }
-    //TODO: Change by the correct one. (assistances)
-    /*
-    public void getEventsById(int id, OpenEventsCallback<List<EventResponse>> callback){
-        this.service.getEventsById(id).enqueue(new Callback<List<EventResponse>>() {
-            @Override
-            public void onResponse(Call<List<EventResponse>> call, Response<List<EventResponse>> response) {
-                //TODO: Check why response is empty.
-                callback.onResponseOpenEvents(call, response);
-            }
-
-            @Override
-            public void onFailure(Call<List<EventResponse>> call, Throwable t) {
-                callback.onFailureOpenEvents();
-            }
-        });
-    }*/
-
 
     public void assistEvent(int id, OpenEventsCallback callback) {
         this.service.assistEvent(id).enqueue(new Callback<AssistEventResponse>() {

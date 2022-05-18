@@ -6,17 +6,17 @@ import java.io.Serializable;
 
 public class UserResponse implements Serializable {
     @SerializedName("id")
-    private int id;
+    private final int id;
     @SerializedName("name")
-    private String name;
+    private final String name;
     @SerializedName("last_name")
-    private String last_name;
+    private final String last_name;
     @SerializedName("email")
-    private String email;
+    private final String email;
     @SerializedName("password")
-    private String password;
+    private final String password;
     @SerializedName("image")
-    private String image;
+    private final String image;
 
     public UserResponse(int id, String name, String last_name, String email, String password, String image) {
         this.id = id;
