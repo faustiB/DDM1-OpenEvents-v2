@@ -11,4 +11,6 @@
     <color name="grey">#5F5F5F</color>
     <color name="logout">#9d0208</color>
     <color name="orange">#F47340</color>
+    <color name="green">#00A859</color>
+    <color name="darkblue">#22577E</color>
 </resources>

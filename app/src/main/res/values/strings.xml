@@ -68,4 +68,8 @@
     <string name="unattend">Unattend</string>
     <string name="edit_event">Edit Event</string>
     <string name="delete_event">Delete Event</string>
+    <string name="education">Education</string>
+    <string name="sports">Sports</string>
+    <string name="travel">Travel</string>
+    <string name="concerts">Concerts</string>
 </resources>
