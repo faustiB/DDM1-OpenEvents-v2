@@ -78,4 +78,8 @@ public class EventResponse implements Serializable {
     public int getN_participators() {
         return n_participators;
     }
+
+    public String getType() {
+        return type;
+    }
 }

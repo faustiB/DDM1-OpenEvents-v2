@@ -4,6 +4,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.SearchView;
+import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +26,7 @@ import com.example.openevents.Activities.OwnEventActivity;
 import com.example.openevents.Adapters.EventsAdapter;
 import com.example.openevents.R;
 import com.example.openevents.Response.EventResponse;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -38,11 +42,11 @@ import retrofit2.Response;
  * create an instance of this fragment.
  */
 public class ExploreFragment extends Fragment implements SearchView.OnQueryTextListener {
-    private final ArrayList<EventResponse> events = new ArrayList<>();
+    private ArrayList<EventResponse> events = new ArrayList<>();
     EventsAdapter eventsAdapter;
     SearchView searchView;
     CheckBox bestButton;
-    FloatingActionButton educationButton, sportButton, travelButton, concertButton;
+    ExtendedFloatingActionButton educationButton, sportButton, travelButton, concertButton, clearButton;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -84,6 +88,7 @@ public class ExploreFragment extends Fragment implements SearchView.OnQueryTextL
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -93,8 +98,45 @@ public class ExploreFragment extends Fragment implements SearchView.OnQueryTextL
         setViews(v);
         searchView.setOnQueryTextListener(this);
         executeApiCall("", false);
+        filterByCategory();
 
         return v;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void filterByCategory() {
+
+        sportButton.setOnClickListener(view -> {
+            events.removeIf(event -> !event.getType().equalsIgnoreCase("sports"));
+            eventsAdapter.notifyDataSetChanged();
+            Toast.makeText(getContext(),"Filtered by Sports",Toast.LENGTH_SHORT).show();
+        });
+
+        educationButton.setOnClickListener(view -> {
+            events.removeIf(event -> !event.getType().equalsIgnoreCase("education"));
+            eventsAdapter.notifyDataSetChanged();
+            Toast.makeText(getContext(),"Filtered by Education",Toast.LENGTH_SHORT).show();
+        });
+
+        concertButton.setOnClickListener(view -> {
+            events.removeIf(event -> !event.getType().equalsIgnoreCase("concert"));
+            eventsAdapter.notifyDataSetChanged();
+            Toast.makeText(getContext(),"Filtered by Concert",Toast.LENGTH_SHORT).show();
+        });
+
+        travelButton.setOnClickListener(view -> {
+            events.removeIf(event -> !event.getType().equalsIgnoreCase("travel"));
+            eventsAdapter.notifyDataSetChanged();
+            Toast.makeText(getContext(),"Filtered by Travel",Toast.LENGTH_SHORT).show();
+        });
+
+
+        clearButton.setOnClickListener(view -> {
+            executeApiCall("",false);
+            eventsAdapter.notifyDataSetChanged();
+            Toast.makeText(getContext(),"Filters cleared",Toast.LENGTH_SHORT).show();
+        });
+
     }
 
     private void setViews(View v) {
@@ -135,6 +177,7 @@ public class ExploreFragment extends Fragment implements SearchView.OnQueryTextL
         sportButton = v.findViewById(R.id.category_sports_event);
         travelButton = v.findViewById(R.id.category_travel_event);
         concertButton = v.findViewById(R.id.category_concerts_event);
+        clearButton = v.findViewById(R.id.category_clear_events);
     }
 
     @Override
