@@ -38,8 +38,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_card, parent, false);
 
         // Passing view to ViewHolder
-        UsersAdapter.ViewHolder viewHolder = new UsersAdapter.ViewHolder(view);
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @Override

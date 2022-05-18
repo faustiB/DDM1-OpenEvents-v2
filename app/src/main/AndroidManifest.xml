@@ -40,9 +40,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ExploreEventsActivity"
-            android:exported="false" />
-        <activity
             android:name=".Activities.RegisterActivity"
             android:exported="false" />
         <activity
