@@ -30,6 +30,19 @@ public class CreateEventResponse implements Serializable {
     public String getName() {
         return name;
     }
+
+    public String getAllData() {
+        return "Name: " + name + "\n" +
+                "Image: " + image + "\n" +
+                "Location: " + location + "\n" +
+                "Description: " + description + "\n" +
+                "EventStart_date: " + eventStart_date + "\n" +
+                "EventEnd_date: " + eventEnd_date + "\n" +
+                "N_participators: " + n_participators + "\n" +
+                "Type: " + type + "\n" +
+                "Owner_id: " + owner_id + "\n" +
+                "Date: " + date;
+    }
 }
 
 

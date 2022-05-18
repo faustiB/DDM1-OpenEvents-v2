@@ -248,11 +248,14 @@ public class APIClient {
             @Override
             public void onResponse(Call<CreateEventResponse> call, Response<CreateEventResponse> response) {
                 callback.onResponseOpenEvents(call, response);
+                System.out.println(response.body().getAllData());
+                System.out.println(response.code());
             }
 
             @Override
             public void onFailure(Call<CreateEventResponse> call, Throwable t) {
                 callback.onFailureOpenEvents();
+                System.out.println(t.getMessage());
             }
         });
     }

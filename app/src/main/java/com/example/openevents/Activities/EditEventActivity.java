@@ -64,10 +64,10 @@ public class EditEventActivity extends AppCompatActivity {
             String startDate = etEventStart_date.getText().toString();
             String endDate = etEventEnd_date.getText().toString();
             int participants = Integer.parseInt(String.valueOf(etN_participants.getText()));
-            String type = spinnerCategories.getSelectedItem().toString();
+            //String type = spinnerCategories.getSelectedItem().toString();
 
             //TODO: make spinner work and check if api call is working
-            CreateEventRequest createEventRequest = new CreateEventRequest(name, image, location, description, startDate, endDate, participants, type);
+            CreateEventRequest createEventRequest = new CreateEventRequest(name, image, location, description, startDate, endDate, participants, "Cat1");
             editEventApiCall(createEventRequest);
         });
 
@@ -101,6 +101,7 @@ public class EditEventActivity extends AppCompatActivity {
         apiClient.editEvent(id, createEventRequest, new OpenEventsCallback() {
             @Override
             public void onResponseOpenEvents(Call call, Response response) {
+
                 Toast.makeText(getApplicationContext(), "Event edited", Toast.LENGTH_SHORT).show();
                 finish();
             }
