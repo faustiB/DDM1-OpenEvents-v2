@@ -16,7 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.openevents.API.APIClient;
 import com.example.openevents.API.OpenEventsCallback;
+import com.example.openevents.Activities.EventActivity;
 import com.example.openevents.Activities.MyEventActivity;
+import com.example.openevents.Activities.OwnEventActivity;
 import com.example.openevents.Adapters.EventsAdapter;
 import com.example.openevents.R;
 import com.example.openevents.Response.EventResponse;
@@ -141,6 +143,12 @@ public class MyEventsFragment extends Fragment {
 
         eventsAdapter = new EventsAdapter(getContext(), events, event -> {
             Intent intent = new Intent(getContext(), MyEventActivity.class);
+            System.out.println(getUserId()+" "+event.getOwner_id());
+            if (getUserId() == event.getOwner_id()) {
+                intent = new Intent(getContext(), OwnEventActivity.class);
+            } else {
+                intent = new Intent(getContext(), MyEventActivity.class);
+            }
             intent.putExtra("event", event);
             startActivity(intent);
         });
