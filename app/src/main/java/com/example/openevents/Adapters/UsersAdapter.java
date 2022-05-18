@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.openevents.R;
-import com.example.openevents.Response.EventResponse;
 import com.example.openevents.Response.UserResponse;
 
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
     ArrayList<UserResponse> users;
     private final OnItemUserClickListener listener;
 
-    public interface OnItemUserClickListener{
+    public interface OnItemUserClickListener {
         void onItemclick(UserResponse user);
     }
 
@@ -45,7 +44,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull UsersAdapter.ViewHolder holder, int position) {
-       holder.bind(users.get(position),listener);
+        holder.bind(users.get(position), listener);
 
     }
 

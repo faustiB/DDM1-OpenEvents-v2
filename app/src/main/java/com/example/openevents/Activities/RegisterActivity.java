@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.openevents.API.APIClient;
 import com.example.openevents.API.OpenEventsCallback;
-import com.example.openevents.Activities.LoginActivity;
 import com.example.openevents.R;
 import com.example.openevents.Request.RegisterRequest;
 import com.example.openevents.Response.RegisterResponse;
@@ -85,8 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (!password.equals(passwordConf)) {
             Toast.makeText(this, "Passwords are not the same, please check them", Toast.LENGTH_SHORT).show();
             return false;
-        }
-        else if (password.length() < 8) {
+        } else if (password.length() < 8) {
             Toast.makeText(this, "Password must be at least 8 characters", Toast.LENGTH_SHORT).show();
             return false;
         }

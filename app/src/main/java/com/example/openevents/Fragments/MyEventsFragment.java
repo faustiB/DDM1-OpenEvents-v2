@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.openevents.API.APIClient;
 import com.example.openevents.API.OpenEventsCallback;
-import com.example.openevents.Adapters.EventsAdapter;
 import com.example.openevents.Activities.MyEventActivity;
+import com.example.openevents.Adapters.EventsAdapter;
 import com.example.openevents.R;
 import com.example.openevents.Response.EventResponse;
 

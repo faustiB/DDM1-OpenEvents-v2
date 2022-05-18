@@ -2,22 +2,21 @@ package com.example.openevents.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.openevents.API.APIClient;
 import com.example.openevents.API.OpenEventsCallback;
+import com.example.openevents.Activities.UserActivity;
 import com.example.openevents.Adapters.UsersAdapter;
 import com.example.openevents.R;
 import com.example.openevents.Response.UserResponse;
-import com.example.openevents.Activities.UserActivity;
 
 import java.util.ArrayList;
 import java.util.List;

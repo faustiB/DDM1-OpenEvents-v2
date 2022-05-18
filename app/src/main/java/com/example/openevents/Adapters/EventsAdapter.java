@@ -11,23 +11,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.bumptech.glide.Glide;
 import com.example.openevents.R;
 import com.example.openevents.Response.EventResponse;
 
 import java.util.ArrayList;
 
-public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder>{
+public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder> {
     Context context;
     ArrayList<EventResponse> events;
     private final OnItemClickListener listener;
 
-    public interface OnItemClickListener{
+    public interface OnItemClickListener {
         void onItemclick(EventResponse event);
     }
 
-    public EventsAdapter(Context context, ArrayList<EventResponse> events,OnItemClickListener listener) {
+    public EventsAdapter(Context context, ArrayList<EventResponse> events, OnItemClickListener listener) {
         this.context = context;
         this.events = events;
         this.listener = listener;
@@ -45,7 +44,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull EventsAdapter.ViewHolder holder, int position) {
-        holder.bind(events.get(position),listener);
+        holder.bind(events.get(position), listener);
     }
 
     @Override

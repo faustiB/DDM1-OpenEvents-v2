@@ -1,18 +1,17 @@
 package com.example.openevents.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.openevents.API.APIClient;
 import com.example.openevents.API.OpenEventsCallback;
-import com.example.openevents.Activities.CreateEventActivity;
-import com.example.openevents.Fragments.MyEventsFragment;
 import com.example.openevents.Fragments.ExploreFragment;
+import com.example.openevents.Fragments.MyEventsFragment;
 import com.example.openevents.Fragments.ProfileFragment;
 import com.example.openevents.Fragments.SearchUsersFragment;
 import com.example.openevents.R;
@@ -83,7 +82,7 @@ public class EventsFragmentManagerActivity extends AppCompatActivity implements 
 
     @Override
     public void NavigateToCreate() {
-        Intent i = new Intent(this, CreateEventActivity.class );
+        Intent i = new Intent(this, CreateEventActivity.class);
         startActivity(i);
     }
 
@@ -106,6 +105,7 @@ public class EventsFragmentManagerActivity extends AppCompatActivity implements 
                             }
                         }
                     }
+
                     @Override
                     public void onFailureOpenEvents() {
                         System.out.println("failure");
