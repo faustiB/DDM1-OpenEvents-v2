@@ -36,8 +36,8 @@ public class EditEventActivity extends AppCompatActivity implements AdapterView.
 
         apiClient = APIClient.getInstance(getApplicationContext());
 
+
         setViews();
-        configureSpinner();
         setData();
     }
 
@@ -50,6 +50,8 @@ public class EditEventActivity extends AppCompatActivity implements AdapterView.
         etEventEnd_date = findViewById(R.id.et_edit_event_end_date);
         etN_participants = findViewById(R.id.et_edit_participants);
         spinnerCategories = findViewById(R.id.sp_edit_event_categories);
+
+        configureSpinner();
 
         Button editEvent = findViewById(R.id.bt_edit_event);
         editEvent.setOnClickListener(view -> {
@@ -83,8 +85,8 @@ public class EditEventActivity extends AppCompatActivity implements AdapterView.
     }
 
     private void configureSpinner() {
-        spinnerCategories = findViewById(R.id.sp_create_event_categories);
-        spinnerCategories.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+        spinnerCategories = findViewById(R.id.sp_edit_event_categories);
+        spinnerCategories.setOnItemSelectedListener(this);
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, categories);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategories.setAdapter(adapter);
