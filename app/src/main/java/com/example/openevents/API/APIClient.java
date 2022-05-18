@@ -243,6 +243,20 @@ public class APIClient {
         });
     }
 
+    public void editEvent(int id, CreateEventRequest createEventRequest, OpenEventsCallback<CreateEventResponse> callback) {
+        this.service.editEvent(id, createEventRequest).enqueue(new Callback<CreateEventResponse>() {
+            @Override
+            public void onResponse(Call<CreateEventResponse> call, Response<CreateEventResponse> response) {
+                callback.onResponseOpenEvents(call, response);
+            }
+
+            @Override
+            public void onFailure(Call<CreateEventResponse> call, Throwable t) {
+                callback.onFailureOpenEvents();
+            }
+        });
+    }
+
     public void deleteEvent(int id, OpenEventsCallback callback) {
         this.service.deleteEvent(id).enqueue(new Callback<MessageResponse>() {
             @Override

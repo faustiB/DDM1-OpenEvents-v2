@@ -73,6 +73,9 @@ public interface OpenEventsAPI {
     @GET("events/search/")
     Call<List<EventResponse>> searchEventsByString(@Query("keyword") String event);
 
+    @PUT("events/{id}")
+    Call<CreateEventResponse> editEvent(@Path("id") int id, @Body CreateEventRequest createEventRequest);
+
     @DELETE("events/{id}/")
     Call<MessageResponse> deleteEvent(@Path("id") int id);
 
