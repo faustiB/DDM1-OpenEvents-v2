@@ -23,6 +23,7 @@ import com.example.openevents.Activities.OwnEventActivity;
 import com.example.openevents.Adapters.EventsAdapter;
 import com.example.openevents.R;
 import com.example.openevents.Response.EventResponse;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,7 @@ public class ExploreFragment extends Fragment implements SearchView.OnQueryTextL
     EventsAdapter eventsAdapter;
     SearchView searchView;
     CheckBox bestButton;
+    FloatingActionButton educationButton, sportButton, travelButton, concertButton;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -128,6 +130,11 @@ public class ExploreFragment extends Fragment implements SearchView.OnQueryTextL
                 executeApiCall("", b);
             }
         });
+
+        educationButton = v.findViewById(R.id.category_education_event);
+        sportButton = v.findViewById(R.id.category_sports_event);
+        travelButton = v.findViewById(R.id.category_travel_event);
+        concertButton = v.findViewById(R.id.category_concerts_event);
     }
 
     @Override
