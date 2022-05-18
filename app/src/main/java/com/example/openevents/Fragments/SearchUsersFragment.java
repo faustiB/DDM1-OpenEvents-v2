@@ -11,21 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.example.openevents.API.APIClient;
 import com.example.openevents.API.OpenEventsCallback;
-import com.example.openevents.Adapters.EventsAdapter;
 import com.example.openevents.Adapters.UsersAdapter;
 import com.example.openevents.R;
 import com.example.openevents.Response.UserResponse;
-import com.example.openevents.Response.UsersResponse;
-import com.example.openevents.UserActivity;
+import com.example.openevents.Activities.UserActivity;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import retrofit2.Call;
 import retrofit2.Response;

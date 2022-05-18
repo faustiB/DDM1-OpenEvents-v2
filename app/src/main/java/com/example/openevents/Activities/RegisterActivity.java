@@ -1,4 +1,4 @@
-package com.example.openevents;
+package com.example.openevents.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.openevents.API.APIClient;
 import com.example.openevents.API.OpenEventsCallback;
+import com.example.openevents.Activities.LoginActivity;
+import com.example.openevents.R;
 import com.example.openevents.Request.RegisterRequest;
 import com.example.openevents.Response.RegisterResponse;
 

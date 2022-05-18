@@ -1,4 +1,4 @@
-package com.example.openevents;
+package com.example.openevents.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.example.openevents.API.APIClient;
 import com.example.openevents.API.OpenEventsCallback;
+import com.example.openevents.R;
 import com.example.openevents.Response.AssistEventResponse;
 import com.example.openevents.Response.EventResponse;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;

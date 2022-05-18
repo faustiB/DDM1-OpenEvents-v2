@@ -10,17 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.example.openevents.API.APIClient;
 import com.example.openevents.API.OpenEventsCallback;
 import com.example.openevents.Adapters.EventsAdapter;
-import com.example.openevents.EventActivity;
+import com.example.openevents.Activities.EventActivity;
 import com.example.openevents.R;
 import com.example.openevents.Response.EventResponse;
-import com.example.openevents.UserActivity;
 
 import java.util.ArrayList;
 import java.util.List;

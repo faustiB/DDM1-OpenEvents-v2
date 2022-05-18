@@ -17,15 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.openevents.API.APIClient;
 import com.example.openevents.API.OpenEventsCallback;
 import com.example.openevents.Adapters.EventsAdapter;
-import com.example.openevents.EventActivity;
-import com.example.openevents.MyEventActivity;
+import com.example.openevents.Activities.MyEventActivity;
 import com.example.openevents.R;
 import com.example.openevents.Response.EventResponse;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Response;

@@ -1,4 +1,4 @@
-package com.example.openevents;
+package com.example.openevents.Activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.openevents.API.APIClient;
 import com.example.openevents.API.OpenEventsCallback;
+import com.example.openevents.R;
 import com.example.openevents.Request.LoginRequest;
 import com.example.openevents.Response.LoginResponse;
 

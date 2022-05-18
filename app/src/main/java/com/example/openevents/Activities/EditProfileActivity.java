@@ -1,4 +1,4 @@
-package com.example.openevents;
+package com.example.openevents.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.openevents.API.APIClient;
 import com.example.openevents.API.OpenEventsCallback;
+import com.example.openevents.R;
 import com.example.openevents.Request.EditUserRequest;
 import com.example.openevents.Response.UserResponse;
 

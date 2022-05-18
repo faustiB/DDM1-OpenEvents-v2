@@ -1,4 +1,4 @@
-package com.example.openevents;
+package com.example.openevents.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -10,10 +10,12 @@ import android.os.Bundle;
 
 import com.example.openevents.API.APIClient;
 import com.example.openevents.API.OpenEventsCallback;
+import com.example.openevents.Activities.CreateEventActivity;
 import com.example.openevents.Fragments.MyEventsFragment;
 import com.example.openevents.Fragments.ExploreFragment;
 import com.example.openevents.Fragments.ProfileFragment;
 import com.example.openevents.Fragments.SearchUsersFragment;
+import com.example.openevents.R;
 import com.example.openevents.Response.UserResponse;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
