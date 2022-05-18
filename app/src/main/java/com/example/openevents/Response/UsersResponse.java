@@ -39,8 +39,4 @@ public class UsersResponse implements Serializable {
     public String getEmail() {
         return email;
     }
-
-    public String getImage() {
-        return image;
-    }
 }

@@ -26,8 +26,4 @@ public class RegisterResponse implements Serializable {
     public String getEmail() {
         return email;
     }
-
-    public String getImage() {
-        return image;
-    }
 }

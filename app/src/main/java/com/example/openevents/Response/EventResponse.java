@@ -59,32 +59,12 @@ public class EventResponse implements Serializable {
         return eventStart_date;
     }
 
-    public int getOwner_id() {
-        return owner_id;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
     public String getDescription() {
         return description;
     }
 
     public String getEventEnd_date() {
         return eventEnd_date;
-    }
-
-    public int getN_participators() {
-        return n_participators;
-    }
-
-    public String getSlug() {
-        return slug;
-    }
-
-    public String getType() {
-        return type;
     }
 
     public int getId() {

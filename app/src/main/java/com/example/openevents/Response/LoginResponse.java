@@ -7,9 +7,9 @@ import java.io.Serializable;
 public class LoginResponse implements Serializable {
 
     @SerializedName("accessToken")
-    private String accesToken;
+    private String accessToken;
 
-    public String getAccesToken() {
-        return accesToken;
+    public String getAccessToken() {
+        return accessToken;
     }
 }

@@ -101,7 +101,7 @@ public class APIClient {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (response.isSuccessful()) {
-                    accessToken = response.body().getAccesToken();
+                    accessToken = response.body().getAccessToken();
 
                     //Save token to shared preferences
                     SharedPreferences sharedPref = context.getSharedPreferences("token", MODE_PRIVATE);
