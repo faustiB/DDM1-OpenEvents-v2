@@ -1,10 +1,7 @@
 package com.example.openevents.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,18 +10,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.openevents.API.APIClient;
 import com.example.openevents.API.OpenEventsCallback;
 import com.example.openevents.R;
 import com.example.openevents.Request.CreateEventRequest;
-import com.example.openevents.Response.AssistEventResponse;
-import com.example.openevents.Response.CreateEventResponse;
 import com.example.openevents.Response.EventResponse;
 
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class EditEventActivity extends AppCompatActivity {
+public class EditEventActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     String[] categories = {"Cat1", "Cat2", "Cat3", "Cat4"};
     Spinner spinnerCategories;
     EditText etName, etImage, etLocation, etDescription, etEventStart_date, etEventEnd_date, etN_participants;
@@ -44,7 +41,7 @@ public class EditEventActivity extends AppCompatActivity {
         setData();
     }
 
-    private void setViews(){
+    private void setViews() {
         etName = findViewById(R.id.et_edit_event_name);
         etImage = findViewById(R.id.et_edit_event_profile_picture);
         etLocation = findViewById(R.id.et_edit_event_location);
@@ -64,10 +61,9 @@ public class EditEventActivity extends AppCompatActivity {
             String startDate = etEventStart_date.getText().toString();
             String endDate = etEventEnd_date.getText().toString();
             int participants = Integer.parseInt(String.valueOf(etN_participants.getText()));
-            //String type = spinnerCategories.getSelectedItem().toString();
+            String type = spinnerCategories.getSelectedItem().toString();
 
-            //TODO: make spinner work and check if api call is working
-            CreateEventRequest createEventRequest = new CreateEventRequest(name, image, location, description, startDate, endDate, participants, "Cat1");
+            CreateEventRequest createEventRequest = new CreateEventRequest(name, image, location, description, startDate, endDate, participants, type);
             editEventApiCall(createEventRequest);
         });
 
@@ -76,8 +72,6 @@ public class EditEventActivity extends AppCompatActivity {
     private void setData() {
         Intent i = getIntent();
         event = (EventResponse) i.getSerializableExtra("event");
-
-        System.out.println(event.getName() + " " + event.getImage() + " " + event.getLocation() + " " + event.getDescription() + " " + event.getEventStart_date() + " " + event.getEventEnd_date() + " " + event.getN_participators());
 
         etName.setText(event.getName());
         etImage.setText(event.getImage());
@@ -90,10 +84,10 @@ public class EditEventActivity extends AppCompatActivity {
 
     private void configureSpinner() {
         spinnerCategories = findViewById(R.id.sp_create_event_categories);
-        //spinnerCategories.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
-        //ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, categories);
-        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //spinnerCategories.setAdapter(adapter);
+        spinnerCategories.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, categories);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCategories.setAdapter(adapter);
     }
 
     private void editEventApiCall(CreateEventRequest createEventRequest) {
@@ -111,5 +105,15 @@ public class EditEventActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }
