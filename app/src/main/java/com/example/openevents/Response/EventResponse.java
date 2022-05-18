@@ -74,4 +74,8 @@ public class EventResponse implements Serializable {
     public int getOwner_id() {
         return owner_id;
     }
+
+    public int getN_participators() {
+        return n_participators;
+    }
 }

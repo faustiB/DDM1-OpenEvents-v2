@@ -57,8 +57,9 @@ public class OwnEventActivity extends AppCompatActivity {
         editEvent = findViewById(R.id.edit_event);
         editEvent.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
-                //TODO: edit event
-                Toast.makeText(OwnEventActivity.this, "Edit event", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), EditEventActivity.class);
+                intent.putExtra("event", event);
+                startActivity(intent);
             }
         });
 
